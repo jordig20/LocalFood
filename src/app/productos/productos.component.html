@@ -63,12 +63,8 @@
       </thead>
       <tbody>
       <tr *ngFor="let row of productos, index as i">
-        <td (click)="onSelect(row.id)">
-          <img
-            [src]="'https://d1uz88p17r663j.cloudfront.net/original/b38b60976af44a9da16d5601a337e619_Dulce_de_leche.png'">
-          {{row.name}}</td>
-        <td>{{row.id}}</td>
-        <td>{{row.nombre}}</td>
+        <td>{{row._id}}</td>
+        <td (click)="onSelect(row._id)">{{row.nombre}}</td>
         <td>{{row.tipo}}</td>
         <td>{{row.ingredientes}}</td>
       </tr>
@@ -82,9 +78,10 @@
         <ngb-tabset _ngcontent-c2="" class="text-center">
           <ul class="nav nav-tabs justify-content-center" role="tablist"><!---->
             <li class="nav-item">
-              <a aria-controls="ngb-tab-0-panel" aria-disabled="false" aria-expanded="true" class="nav-link active" href=""
+              <a aria-controls="ngb-tab-0-panel" aria-disabled="false" aria-expanded="true" class="nav-link active"
+                 href=""
                  id="ngb-tab-0" role="tab"> <!----><i _ngcontent-c2=""
-                                                                       class="now-ui-icons objects_umbrella-13"></i>
+                                                      class="now-ui-icons objects_umbrella-13"></i>
                 Home
               </a>
             </li>
