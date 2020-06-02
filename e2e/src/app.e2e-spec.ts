@@ -1,23 +1,14 @@
-import { AppPage } from './app.po';
-import { browser, logging } from 'protractor';
+import { Pk2ProAngularPage } from './app.po';
 
-describe('workspace-project App', () => {
-  let page: AppPage;
+describe('pk2-pro-angular App', () => {
+  let page: Pk2ProAngularPage;
 
   beforeEach(() => {
-    page = new AppPage();
+    page = new Pk2ProAngularPage();
   });
 
   it('should display welcome message', () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('localFood app is running!');
-  });
-
-  afterEach(async () => {
-    // Assert that there are no errors emitted from the browser
-    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-    expect(logs).not.toContain(jasmine.objectContaining({
-      level: logging.Level.SEVERE,
-    } as logging.Entry));
+    expect(page.getParagraphText()).toEqual('Welcome to app!!');
   });
 });
