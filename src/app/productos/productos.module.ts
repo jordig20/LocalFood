@@ -4,6 +4,7 @@ import { ProductosComponent } from './productos.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductosViewComponent } from './productos-view/productos-view.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StarRatingModule } from '../star-rating/star-rating.module';
 
 const routes: Routes = [
   { path: '', component: ProductosComponent },
@@ -17,6 +18,7 @@ const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     NgbModule,
+    StarRatingModule,
   ],
 
   exports: [

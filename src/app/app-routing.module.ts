@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './examples/landing/landing.component';
 import { LoginComponent } from './examples/login/login.component';
@@ -23,11 +21,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    CommonModule,
-    BrowserModule,
     RouterModule.forRoot(routes),
   ],
-  exports: [],
+  exports: [RouterModule],
 })
 export class AppRoutingModule {
 }

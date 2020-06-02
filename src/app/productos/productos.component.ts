@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StarRatingColor } from 'app/star-rating/star-rating.component';
 
 @Component({
   selector: 'app-productos',
@@ -7,7 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./productos.component.scss'],
 })
 export class ProductosComponent implements OnInit {
-
+  rating: number = 3;
+  starCount: number = 5;
+  starColor: StarRatingColor = StarRatingColor.accent;
+  starColorP: StarRatingColor = StarRatingColor.primary;
+  starColorW: StarRatingColor = StarRatingColor.warn;
   public productos: any[] = [
     {
       _id: 1,
@@ -16,6 +21,7 @@ export class ProductosComponent implements OnInit {
       ingredientes: 'mucho amor',
       descripcion: 'tengo calor',
       imagen: 'https://i.pinimg.com/474x/e2/7b/59/e27b5900c4922133d0fedf0448b5e034.jpg',
+      valoracion: 3,
     },
     {
       _id: 2,
@@ -24,6 +30,7 @@ export class ProductosComponent implements OnInit {
       ingredientes: 'mucho amor',
       descripcion: 'tengo calor',
       imagen: 'https://i2.wp.com/abajatemperatura.es/wp-content/uploads/2018/06/cerezasABT4.jpg?resize=256%2C256&ssl=1',
+      valoracion: 2,
 
     },
     {
@@ -33,6 +40,7 @@ export class ProductosComponent implements OnInit {
       ingredientes: 'mucho amor',
       descripcion: 'tengo calor',
       imagen: 'https://pbs.twimg.com/profile_images/378800000042558287/d3a87a1ff5ea5c06a02f5f418488d456.jpeg',
+      valoracion: 1,
 
     },
     {
@@ -42,6 +50,7 @@ export class ProductosComponent implements OnInit {
       ingredientes: 'mucho amor',
       descripcion: 'tengo calor',
       imagen: 'https://lh3.googleusercontent.com/proxy/BIB80KlEZ0MOhiftr-TlPBNRWT00AnbLkiPk2HmWObSLkbDcEr-mMatHvr2DG0ne-GOLQyudFEyF_I0PspvkZDZdofQNmimv-Q',
+      valoracion: 4,
 
     },
     {
@@ -51,6 +60,7 @@ export class ProductosComponent implements OnInit {
       ingredientes: 'mucho amor',
       descripcion: 'tengo calor',
       imagen: 'https://pbs.twimg.com/profile_images/425696446176706560/oYY4O4wZ.jpeg',
+      valoracion: 5,
 
     },
     {
@@ -60,6 +70,7 @@ export class ProductosComponent implements OnInit {
       ingredientes: 'mucho amor',
       descripcion: 'tengo calor',
       imagen: 'https://cdn130.picsart.com/255900075002202.jpg?type=webp&to=crop&r=256',
+      valoracion: 1,
 
     },
     {
@@ -69,6 +80,7 @@ export class ProductosComponent implements OnInit {
       ingredientes: 'mucho amor',
       descripcion: 'tengo calor',
       imagen: 'https://pbs.twimg.com/profile_images/421426270602145792/MBG-nTTE.jpeg',
+      valoracion: 2,
 
     },
   ];

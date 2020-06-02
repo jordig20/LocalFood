@@ -51,166 +51,40 @@
 
   </nav>
 
-  <div class="table-static">
-    <table class="table table-sm">
-      <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Tipo</th>
-        <th>ingredientes</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let row of productos, index as i">
-        <td>{{row._id}}</td>
-        <td (click)="onSelect(row._id)">{{row.nombre}}</td>
-        <td>{{row.tipo}}</td>
-        <td>{{row.ingredientes}}</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+  <!--  <div class="table-static">-->
+  <!--    <table class="table table-sm">-->
+  <!--      <thead>-->
+  <!--      <tr>-->
+  <!--        <th>ID</th>-->
+  <!--        <th>Nombre</th>-->
+  <!--        <th>Tipo</th>-->
+  <!--        <th>ingredientes</th>-->
+  <!--      </tr>-->
+  <!--      </thead>-->
+  <!--      <tbody>-->
+  <!--      <tr *ngFor="let row of productos, index as i">-->
+  <!--        <td>{{row._id}}</td>-->
+  <!--        <td (click)="onSelect(row._id)">{{row.nombre}}</td>-->
+  <!--        <td>{{row.tipo}}</td>-->
+  <!--        <td>{{row.ingredientes}}</td>-->
+  <!--      </tr>-->
+  <!--      </tbody>-->
+  <!--    </table>-->
+  <!--  </div>-->
 
-  <div *ngFor="let row of productos, index as i" _ngcontent-c2="" class="card">
-    <div _ngcontent-c2="" class="section section-tabs">
-      <div _ngcontent-c2="" class="container">
-        <div _ngcontent-c2="" class="row">
-          <div _ngcontent-c2="" class="col-md-10 ml-auto col-xl-6 mr-auto">
-            <p _ngcontent-c2="" class="category">{{row.nombre}}</p>
-            <div _ngcontent-c2="" class="card">
+  <div class="row">
+    <div *ngFor="let row of productos, index as i" class="col-sm-3">
+      <div class="card text-center bg-light mb-5 " style="width: 18rem;">
+        <img alt="Card image cap" class="card-img-top" src="{{row.imagen}}">
+        <div class="card-header">{{row.nombre}}</div>
+        <div class="card-body">
+          <h5 class="card-title">{{row.nombre}}</h5>
+          <p class="card-text">{{row.descripcion}}
+          </p>
+          <app-star-rating [color]="starColor" [starCount]=5 rating="{{row.valoracion}}"></app-star-rating>
 
-              <div _ngcontent-c2="" class="nav-tabs-navigation">
-                <img src="{{row.imagen}}">
+          <button (click)="onSelect(row._id)" class="btn btn-primary btn-sm" type="button">Ir a producto</button>
 
-                <div _ngcontent-c2="" class="nav-tabs-wrapper">
-
-                  <p _ngcontent-c2="">
-                    I think that’s a responsibility that I have, to push possibilities, to show
-                    people, this is the level that things could be at. So when you get something that has the name
-                    Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader
-                    of a company that ends up being worth billions of dollars, because I got the answers. I
-                    understand culture. I am the nucleus.
-                  </p>
-                  <ngb-tabset _ngcontent-c2="" class="text-center">
-
-                    <p _ngcontent-c2="">
-                      I think that’s a responsibility that I have, to push possibilities, to show
-                      people, this is the level that things could be at. So when you get something that has the name
-                      Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader
-                      of a company that ends up being worth billions of dollars, because I got the answers. I
-                      understand culture. I am the nucleus.
-                    </p>
-                    <div class="tab-content"><!----><!---->
-
-                      <p _ngcontent-c2="">
-                        I think that’s a responsibility that I have, to push possibilities, to show
-                        people, this is the level that things could be at. So when you get something that has the name
-                        Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader
-                        of a company that ends up being worth billions of dollars, because I got the answers. I
-                        understand culture. I am the nucleus.
-                      </p>
-                      <div aria-expanded="true" aria-labelledby="ngb-tab-0" class="tab-pane active" id="ngb-tab-0-panel"
-                           role="tabpanel"><!---->
-
-                      </div><!----><!----><!----><!----><!----><!----><!----></div>
-                  </ngb-tabset>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-  <div _ngcontent-c2="" class="section section-tabs">
-    <div _ngcontent-c2="" class="container">
-      <div _ngcontent-c2="" class="row">
-        <div _ngcontent-c2="" class="col-md-10 ml-auto col-xl-6 mr-auto">
-          <p _ngcontent-c2="" class="category">Tabs with Icons on Card</p>
-          <div _ngcontent-c2="" class="card">
-            <div _ngcontent-c2="" class="nav-tabs-navigation">
-              <div _ngcontent-c2="" class="nav-tabs-wrapper">
-                <ngb-tabset _ngcontent-c2="" class="text-center">
-                  <ul class="nav nav-tabs justify-content-center" role="tablist"><!---->
-                    <li class="nav-item">
-                      <a aria-disabled="false" aria-expanded="false" class="nav-link" href="" id="ngb-tab-0" role="tab">
-                        <!----><i _ngcontent-c2="" class="now-ui-icons objects_umbrella-13"></i> Home
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a aria-controls="ngb-tab-1-panel" aria-disabled="false" aria-expanded="true"
-                         class="nav-link active" href=""
-                         id="ngb-tab-1" role="tab"> <!----><i _ngcontent-c2=""
-                                                              class="now-ui-icons shopping_cart-simple"></i>
-                        Profile
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a aria-disabled="false" aria-expanded="false" class="nav-link" href="" id="ngb-tab-2" role="tab">
-                        <!----><i _ngcontent-c2="" class="now-ui-icons shopping_shop"></i> Messages
-                      </a>
-                    </li>
-                    <li class="nav-item">
-                      <a aria-disabled="false" aria-expanded="false" class="nav-link" href="" id="ngb-tab-3" role="tab">
-                        <!----><i _ngcontent-c2="" class="now-ui-icons ui-2_settings-90"></i> Settings
-                      </a>
-                    </li>
-                  </ul>
-                  <div class="tab-content"><!----><!----><!----><!---->
-                    <div aria-expanded="true" aria-labelledby="ngb-tab-1" class="tab-pane active" id="ngb-tab-1-panel"
-                         role="tabpanel"><!---->
-                      <p _ngcontent-c2=""> I will be the leader of a company that ends up being worth billions of
-                        dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a
-                        responsibility that I have, to push possibilities, to show people, this is the level that things
-                        could be at. I think that’s a responsibility that I have, to push possibilities, to show people,
-                        this is the level that things could be at.
-                      </p>
-                    </div><!----><!----><!----><!----><!----></div>
-                </ngb-tabset>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div _ngcontent-c2="" class="col-md-10 ml-auto col-xl-6 mr-auto">
-          <p _ngcontent-c2="" class="category">Tabs with Background on Card</p>
-          <div _ngcontent-c2="" class="card">
-            <div _ngcontent-c2="" class="nav-tabs-navigation" data-tabs-color="orange">
-              <div _ngcontent-c2="" class="nav-tabs-wrapper">
-                <ngb-tabset _ngcontent-c2="" class="text-center">
-                  <ul class="nav nav-tabs justify-content-center" role="tablist"><!---->
-                    <li class="nav-item">
-                      <a aria-disabled="false" aria-expanded="false" class="nav-link" href="" id="ngb-tab-4" role="tab">
-                        Home<!----></a>
-                    </li>
-                    <li class="nav-item">
-                      <a aria-disabled="false" aria-expanded="false" class="nav-link" href="" id="ngb-tab-5" role="tab">
-                        Profile<!----></a>
-                    </li>
-                    <li class="nav-item">
-                      <a aria-disabled="false" aria-expanded="false" class="nav-link" href="" id="ngb-tab-6" role="tab">
-                        Messages<!----></a>
-                    </li>
-                    <li class="nav-item">
-                      <a aria-controls="ngb-tab-7-panel" aria-disabled="false" aria-expanded="true"
-                         class="nav-link active" href=""
-                         id="ngb-tab-7" role="tab"> Settings<!----></a>
-                    </li>
-                  </ul>
-                  <div class="tab-content"><!----><!----><!----><!----><!----><!----><!----><!---->
-                    <div aria-expanded="true" aria-labelledby="ngb-tab-7" class="tab-pane active" id="ngb-tab-7-panel"
-                         role="tabpanel"><!---->
-                      <p _ngcontent-c2=""> "I will be the leader of a company that ends up being worth billions of
-                        dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a
-                        responsibility that I have, to push possibilities, to show people, this is the level that things
-                        could be at."
-                      </p>
-                    </div><!----></div>
-                </ngb-tabset>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
