@@ -13,7 +13,7 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -22,9 +22,10 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
     RouterModule,
     AppRoutingModule,
     ComponentsModule,
-    ExamplesModule
+    ExamplesModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {
+}
