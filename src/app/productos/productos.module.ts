@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductosComponent } from './productos.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ProductosViewComponent } from './productos-view/productos-view.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { path: '', component: ProductosComponent },
@@ -11,10 +12,11 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ProductosComponent, ProductosViewComponent, ProductosViewComponent],
+  declarations: [ProductosComponent, ProductosViewComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    NgbModule,
   ],
 
   exports: [

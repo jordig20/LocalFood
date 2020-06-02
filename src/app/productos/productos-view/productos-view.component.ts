@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from '../../core/services/api.service';
 
 @Component({
   selector: 'app-productos-view',
@@ -10,6 +11,7 @@ export class ProductosViewComponent implements OnInit {
 
   constructor(private _route: ActivatedRoute,
               private _router: Router,
+              //private _api: ApiService,
   ) {
   }
 

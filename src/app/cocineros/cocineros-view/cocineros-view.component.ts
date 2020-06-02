@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ApiService } from '../../core/services/api.service';
 
 @Component({
   selector: 'app-cocineros-view',
@@ -9,7 +10,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CocinerosViewComponent implements OnInit {
 
   constructor(private _route: ActivatedRoute,
-              private _router: Router) {
+              private _router: Router,
+              //private _api: ApiService
+              ) {
   }
 
   ngOnInit(): void {

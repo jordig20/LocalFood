@@ -36,8 +36,8 @@
             </a>
           </li>
           <li _ngcontent-c4="" class="nav-item">
-            <a _ngcontent-c4="" class="nav-link" href="#pablo"><i _ngcontent-c4=""
-                                                                  class="now-ui-icons ui-1_settings-gear-63"></i>
+            <a _ngcontent-c4="" class="nav-link"><i _ngcontent-c4=""
+                                                    class="now-ui-icons ui-1_settings-gear-63"></i>
               <p _ngcontent-c4="">MI PERFIL</p>
             </a>
           </li>
@@ -51,4 +51,55 @@
 
   </nav>
 
+  <div class="table-static">
+    <table class="table table-sm">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Tipo</th>
+        <th>ingredientes</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let row of productos, index as i">
+        <td (click)="onSelect(row.id)">
+          <img
+            [src]="'https://d1uz88p17r663j.cloudfront.net/original/b38b60976af44a9da16d5601a337e619_Dulce_de_leche.png'">
+          {{row.name}}</td>
+        <td>{{row.id}}</td>
+        <td>{{row.nombre}}</td>
+        <td>{{row.tipo}}</td>
+        <td>{{row.ingredientes}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div _ngcontent-c2="" class="card">
+    <div _ngcontent-c2="" class="nav-tabs-navigation">
+      <div _ngcontent-c2="" class="nav-tabs-wrapper">
+        <ngb-tabset _ngcontent-c2="" class="text-center">
+          <ul class="nav nav-tabs justify-content-center" role="tablist"><!---->
+            <li class="nav-item">
+              <a aria-controls="ngb-tab-0-panel" aria-disabled="false" aria-expanded="true" class="nav-link active" href=""
+                 id="ngb-tab-0" role="tab"> <!----><i _ngcontent-c2=""
+                                                                       class="now-ui-icons objects_umbrella-13"></i>
+                Home
+              </a>
+            </li>
+          </ul>
+          <div class="tab-content"><!----><!---->
+            <div aria-expanded="true" aria-labelledby="ngb-tab-0" class="tab-pane active" id="ngb-tab-0-panel"
+                 role="tabpanel"><!---->
+              <p _ngcontent-c2="">I think that’s a responsibility that I have, to push possibilities, to show people,
+                this is the level that things could be at. So when you get something that has the name Kanye West on it,
+                it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up
+                being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.
+              </p>
+            </div><!----><!----><!----><!----><!----><!----><!----></div>
+        </ngb-tabset>
+      </div>
+    </div>
+  </div>
 </div>

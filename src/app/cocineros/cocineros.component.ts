@@ -8,14 +8,25 @@ import { Router } from '@angular/router';
 })
 export class CocinerosComponent implements OnInit {
 
-  constructor(private _router: Router) {
+  public cocineros: any[] = [];
+
+
+  constructor(private _router: Router,
+              //private _api: ApiService,
+  ) {
   }
 
   ngOnInit(): void {
+
+    // this._api.get('/productos').subscribe(r => {
+    //  this.cocineros = r;
+    // });
+
   }
 
   onProducts() {
     this._router.navigate(['productos']);
-
   }
+
+
 }
