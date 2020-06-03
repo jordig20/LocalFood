@@ -8,11 +8,13 @@ import { ExamplesModule } from './examples/examples.module';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
-import { StarRatingComponent } from './star-rating/star-rating.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AppRoutingModule } from './app-routing.module';
+import { MatCardModule } from '@angular/material/card';
+import { BrowserModule } from '@angular/platform-browser';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { AppRoutingModule } from './app-routing.module';
     NavbarComponent,
   ],
   imports: [
+    BrowserModule,
+    FormsModule,
     BrowserAnimationsModule,
     NgbModule,
     FormsModule,
@@ -30,12 +34,12 @@ import { AppRoutingModule } from './app-routing.module';
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
+    MatCardModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  exports: [
-
-  ],
+  exports: [],
 })
 export class AppModule {
 }
