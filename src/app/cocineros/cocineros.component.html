@@ -17,7 +17,7 @@
           <div _ngcontent-c3="" class="input-group-prepend">
             <span _ngcontent-c3="" class="input-group-text"><i _ngcontent-c3="" class="fa fa-search"></i></span>
           </div>
-          <input _ngcontent-c3="" class="form-control" placeholder="Buscar ciudad" type="text">
+          <input (keyup)="onKey($event)" _ngcontent-c3="" class="form-control" placeholder="Buscar ciudad" type="text">
         </div>
       </div>
       <div _ngcontent-c4="" class="collapse navbar-collapse" id="example-navbar-primary">
@@ -41,14 +41,48 @@
               <p _ngcontent-c4="">MI PERFIL</p>
             </a>
           </li>
-
-
         </ul>
+      </div>
+    </div>
+  </nav>
 
+
+  <div style="max-width: 70%; margin: 0 auto">
+    <div [style.backgroundColor]="'white'" class="card">
+      <div class="card-header">
+        <mat-form-field>
+          <mat-label>Elige una categoria</mat-label>
+          <mat-select (ngModelChange)="selectOption($event)" [ngModel]="tipoCocinero">
+            <mat-option *ngFor="let tipo of tipoCocinero" [value]="tipo">
+              {{ tipo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
       </div>
 
-    </div>
 
-  </nav>
+      <div class="card-body">
+        <div class="row">
+          <div *ngFor="let row of cocineros, index as i" class="col-sm-4">
+            <div class="card text-center bg-light mb-5 " style="width: 18rem; margin: 0 auto">
+              <img alt="Card image cap" class="card-img-top" src="{{row.imagen}}">
+              <div class="card-header">{{row.nombre}}</div>
+              <div class="card-body">
+                <h5 class="card-title">{{row.nombre}}</h5>
+                <p class="card-text">{{row.descripcion}}
+                </p>
+                <app-star-rating [color]="starColor" [starCount]=5 rating="{{row.valoracion}}"></app-star-rating>
+
+                <button (click)="onSelect(row._id)" class="btn btn-primary btn-sm" type="button">Ir a producto</button>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 
 </div>

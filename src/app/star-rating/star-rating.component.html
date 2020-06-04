@@ -1,11 +1,11 @@
 <button (click)="onClick(i+1)" *ngFor="let ratingId of ratingArr;index as i" [color]="color" [id]="'star_'+i"
-        [matTooltip]="ratingId+1" mat-icon-button matTooltipPosition="above">
-  <mat-icon>
+        [matTooltip]="ratingId+1" class="icon" mat-icon-button matTooltipPosition="above">
+  <mat-icon class="icon">
     {{showIcon(i)}}
   </mat-icon>
-</button>
-<p class="body-2">
-  <span class="body-2">{{rating}}</span>
-  /
-  <span class="body-2">5</span>
-</p>
+  <!--</button>-->
+  <!--<p class="body-2">-->
+  <!--  <span class="body-2">{{rating}}</span>-->
+  <!--  /-->
+  <!--  <span class="body-2">5</span>-->
+  <!--</p>-->

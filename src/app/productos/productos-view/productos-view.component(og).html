@@ -45,35 +45,27 @@
   </nav>
 
   <div>
-
-    <div class="card" style="width: 35%; min-width: 30%; margin: 0 auto">
+    <div class="card" style="width: 40%; margin: 0 auto">
       <div class="card-header">
-        <div class="container-fluid">
-          <div class="row">
-            <div (click)="onProfile()" class="col-md-4" style="cursor: pointer;">
 
-              <img alt="Card image cap" src="{{producto.imagenVendedor}}"
-                   style="border-radius:50%; width: 57px; height: 57px; border-style: solid; border-color: #2CA8FF ; border-width: 1px;">
-              <br>
-              {{producto.nombrevendedor}}
-            </div>
-            <div class="col-md-6">
-              <div style="margin-left: -50px;  text-align: center">
-                <h5 class="card-title" style="margin-bottom: 0px; margin-top: 5px; ">{{producto.nombre}}</h5>
-                <app-star-rating [color]="starColor" [starCount]=5 rating="{{producto.valoracion}}"
-                                 style=""></app-star-rating>
-              </div>
-            </div>
-
-            <div class="col-md-2">
-              <div style="margin: 0;
-                   position: absolute;
-                   right: 0%;">
-                <button (click)="onCook()" class="btn btn-success" style=""><i class="fas fa-shopping-basket"></i>
-                </button>
-              </div>
-            </div>
+        <div (click)="onProfile()" style="margin-top: 1%; cursor: pointer;">
+          <img alt="Card image cap" src="{{producto.imagenVendedor}}"
+               style="border-radius:50%; float: left; width:12%; height: 12%;">
+          <div
+            style="display: flex;flex-direction: column;justify-content: space-between; float: left;  margin-left: 3%;height: 42px;">
+            <div>{{producto.nombrevendedor}}</div>
+            5 productos
           </div>
+        </div>
+        <div
+          style=" justify-content: space-between; flex-direction: column; align-items: center; margin-top: 5%;  margin-right: 50%">
+          <div class="card-title" style=" font-weight: bold; font-size: 200%;">{{producto.nombre}}</div>
+          <app-star-rating [color]="starColor" [starCount]=5 rating="{{producto.valoracion}}"
+                           style="margin-top: -10px"></app-star-rating>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: -78px">
+          <button (click)="onCook()" class="btn btn-success"><i class="fas fa-shopping-basket"></i>
+          </button>
         </div>
       </div>
 

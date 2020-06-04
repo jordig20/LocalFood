@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { CocinerosComponent } from './cocineros.component';
 import { CocinerosViewComponent } from './cocineros-view/cocineros-view.component';
+import { StarRatingModule } from '../star-rating/star-rating.module';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   { path: '', component: CocinerosComponent },
@@ -14,6 +17,9 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    StarRatingModule,
+    MatSelectModule,
+    FormsModule,
   ],
 
   exports: [
