@@ -9,15 +9,16 @@ import { StarRatingColor } from '../../star-rating/star-rating.component';
 })
 export class ProductosViewComponent implements OnInit {
   starColor: StarRatingColor = StarRatingColor.accent;
+  public id: string;
 
   public producto = {
     _id: 1,
-    nombrevendedor: 'George Bararu',
+    nombrevendedor: 'George',
     imagenVendedor: 'https://i.pinimg.com/474x/e2/7b/59/e27b5900c4922133d0fedf0448b5e034.jpg',
-    nombre: 'Comida comida comida',
+    nombre: 'SUSHI',
     tipo: 'postre',
     ingredientes: 'mucho amor',
-    descripcion: 'Filtro de Gas-oil Purflux C518. El motivo de la venta es por equivocación a la hora de comprar y se me paso el tiempo de devolución.',
+    descripcion: 'Comida japonesa recién elaborada con productos de primera calidad, para llevar o a domicilio. ',
     imagen: 'https://media-cdn.tripadvisor.com/media/photo-s/15/05/03/32/sashimi-e-sushi-variados.jpg',
     valoracion: 3,
   };
@@ -30,7 +31,7 @@ export class ProductosViewComponent implements OnInit {
 
 
   ngOnInit(): void {
-    const id: string = this._route.snapshot.paramMap.get('id');
+    this.id = this._route.snapshot.paramMap.get('id');
   }
 
 
@@ -43,7 +44,9 @@ export class ProductosViewComponent implements OnInit {
   }
 
   onProfile() {
-    this._router.navigate(['productos']);
+
+    // for(this.productos) if
+    this._router.navigate(['cocineros/' + this.id]);
   }
 
 

@@ -6,6 +6,7 @@ import { CocinerosViewComponent } from './cocineros-view/cocineros-view.componen
 import { StarRatingModule } from '../star-rating/star-rating.module';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule } from '@angular/forms';
+import { MatTabsModule } from '@angular/material/tabs';
 
 const routes: Routes = [
   { path: '', component: CocinerosComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
     StarRatingModule,
     MatSelectModule,
     FormsModule,
+    MatTabsModule,
   ],
 
   exports: [
