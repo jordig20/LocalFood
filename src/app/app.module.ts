@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // this is needed!
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { ComponentsModule } from './components/components.module';
@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MatCardModule } from '@angular/material/card';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatSelectModule } from '@angular/material/select';
+import { StarRatingModule } from './star-rating/star-rating.module';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,9 @@ import { MatSelectModule } from '@angular/material/select';
     MatButtonModule,
     MatTooltipModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    StarRatingModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

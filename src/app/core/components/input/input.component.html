@@ -1,0 +1,13 @@
+<mat-form-field>
+  <!--  <input (keyup)="onKeyup.emit($event)"-->
+  <!--         *ngIf="edit"-->
+  <!--         [class.is-invalid]="form.controls[key].invalid && !skipValidation"-->
+  <!--         [class.is-valid]="form.controls[key].valid  && !skipValidation "-->
+  <!--         [formControl]="form.controls[key]"-->
+  <!--         class="form-control"-->
+  <!--         type="{{type}}"/>-->
+  <mat-label>{{label}}</mat-label>
+  <input (keyup)="onKeyup.emit($event)" [formControl]="form.controls[key]"
+         matInput/>
+
+</mat-form-field>
