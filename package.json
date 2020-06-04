@@ -36,6 +36,7 @@
     "jquery": "3.5.0",
     "jw-bootstrap-switch-ng2": "2.0.5",
     "ng-starrating": "^1.0.20",
+    "mdbootstrap": "^4.19.0",
     "ng2-nouislider": "1.7.13",
     "ngx-stars": "^1.4.3",
     "nouislider": "9.2.0",
