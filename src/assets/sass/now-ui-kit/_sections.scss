@@ -105,6 +105,10 @@
       @include linear-gradient(rgba($black-color,.20), rgba(0, 0, 0, 0.6));
     }
 
+  &[filter-color="blue"]{
+    @include linear-gradient(rgba($black-color,.20), rgba(3, 23, 224, 0.6));
+  }
+
     .container{
         z-index: 2;
     }
