@@ -57,10 +57,10 @@
     <div [style.backgroundColor]="'white'" class="card">
       <div class="card-header">
         <div style="text-align: center">
-          <img alt="Card image cap" src="{{usuario.imagenVendedor}}"
+          <img alt="Card image cap" src=""
                style="border-radius:50%; width: 70px; height: 70px; border-style: solid; border-color: #2CA8FF ; border-width: 1px;">
 
-          <h3>{{usuario.nombrevendedor}}</h3>
+          <h3>{{usuario.name}}</h3>
         </div>
 
       </div>
@@ -72,11 +72,12 @@
                 <div class="card text-center bg-light mb-5 " style="width: 18rem; margin: 0 auto">
                   <img alt="Card image cap" class="card-img-top" src="{{row.imagen}}"
                        style="width: 400px; height: 300px; object-fit: cover; ">
-                  <div class="card-header">{{row.nombre}}</div>
+                  <div class="card-header">{{row.name}}</div>
                   <div class="card-body">
-                    <h5 class="card-title">{{row.nombre}}</h5>
-                    <p class="card-text">{{row.descripcion}}</p>
-                    <app-star-rating [color]="starColor" [starCount]=5 rating="{{row.valoracion}}"></app-star-rating>
+                    <h5 class="card-title">{{row.price}}</h5>
+                    <p class="card-text">{{row.description}}</p>
+                    <app-star-rating [color]="starColor" [starCount]=5
+                                     rating="{{row.finalValuation}}"></app-star-rating>
 
                     <button (click)="onSelect(row._id)" class="btn btn-primary btn-sm" type="button">Ir a producto
                     </button>
@@ -91,25 +92,23 @@
           <div class="row" style="margin-left: 30px">
             <div>
               <div class="card-body">
-                <img src="{{usuario.imagenVendedor}}"
+                <img src=""
                      style="width: 500px; height: 500px; object-fit: cover; -webkit-border-radius: 10px; border-radius: 10px;">
               </div>
             </div>
             <div>
               <div class="card-body">
                 <h5 class="card-title">TIPO</h5>
-                <p class="card-text">{{usuario.tipo}}</p>
+                <p class="card-text">{{usuario.type}}</p>
                 <div class="dropdown-divider"></div>
-                <h5 class="card-title">DESCRIPCIÓN</h5>
-                <p class="card-text">{{usuario.descripcion}}</p>
                 <div class="dropdown-divider"></div>
                 <h5 class="card-title">UBICACIÓN</h5>
-                <p class="card-text">{{usuario.direccion}}</p>
-                <p class="card-text">{{usuario.ciudad}}</p>
+                <p class="card-text">{{usuario.adress}}</p>
+                <p class="card-text">{{usuario.city}}</p>
                 <div class="dropdown-divider"></div>
                 <h5 class="card-title">CONTACTO</h5>
-                <p class="card-text">{{usuario.telefono}}</p>
-                <p class="card-text">{{usuario.email}}</p>
+                <p class="card-text">{{usuario.telf}}</p>
+                <p class="card-text">{{usuario.mail}}</p>
               </div>
             </div>
           </div>

@@ -11,7 +11,7 @@ export class ApiService {
   }
 
 
-  get(url: string, showLoader: boolean = true): Observable<any | void> {
+  get(url: string): Observable<any | void> {
     return this.doCallWithHeaders(null, this.getApi() + url).pipe(
       mergeMap((h: any) => this._http.get(h.url, h.headers)),
       mergeMap((r: any) => {
@@ -75,18 +75,18 @@ export class ApiService {
   private doCallWithHeaders(data: any, url: string): Observable<any> {
     const jwt: any = localStorage.getItem('jwt');
 
-    if (jwt) {
-      const httpOptions = {
-        headers: new HttpHeaders({
-          'Content-Type': 'application/json',
-          'authorization': jwt || 'no-jwt',
-        }),
-      };
-      return of({ headers: httpOptions, payload: data, url: url });
-    }
+    // if (jwt) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      }),
+    };
+    return of({ headers: httpOptions, payload: data, url: url });
+    // }
   }
 
   private getApi(): string {
-    return 'http://localhost:4200';
+    const api: string = 'localhost:3000';
+    return `http://${api}/`;
   }
 }

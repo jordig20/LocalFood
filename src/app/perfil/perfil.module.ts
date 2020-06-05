@@ -8,12 +8,12 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { RouterModule, Routes } from '@angular/router';
 import { PerfilInformacionComponent } from './perfil-informacion/perfil-informacion.component';
 import { CoreModule } from '../core/core-module.module';
-import { MatInputModule } from '@angular/material/input';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 
 const routes: Routes = [
   { path: '', component: PerfilComponent },
+  { path: ':id', component: PerfilComponent },
 ];
 
 @NgModule({
