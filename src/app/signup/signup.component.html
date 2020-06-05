@@ -1,19 +1,24 @@
 <div class="page-header" filter-color="blue">
   <div class="container">
     <div class="card form-center">
-      <form>
+      <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
         <h1>Registrarse</h1>
         <div class="form-group">
-          <input type="text" class="form-control" id="name" placeholder="Nombre">
+          <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nombre y apellidos" required>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" id="last_name" placeholder="Apellidos">
+          <input type="email" class="form-control" id="email" formControlName="mail" placeholder="Dirección de email" required>
         </div>
         <div class="form-group">
-          <input type="email" class="form-control" id="email" placeholder="Dirección de email">
+          <input type="password" class="form-control" id="password" formControlName="password" placeholder="Contraseña" required>
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="password" placeholder="Contraseña">
+          <select class="form-control" formControlName="city" id="city" required>
+            <option>Reus</option>
+            <option>Barcelona</option>
+            <option>Madrid</option>
+            <option>Sevilla</option>
+          </select>
         </div>
         <button type="submit" class="btn btn-primary">Registrarse</button>
       </form>

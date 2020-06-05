@@ -2,6 +2,7 @@ import { Component, OnInit, Renderer2, OnDestroy } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { NgbAccordionConfig } from '@ng-bootstrap/ng-bootstrap';
 import * as Rellax from 'rellax';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-components',
@@ -32,7 +33,7 @@ export class ComponentsComponent implements OnInit, OnDestroy {
 
     state_icon_primary = true;
 
-    constructor( private renderer : Renderer2, config: NgbAccordionConfig) {
+    constructor( private renderer : Renderer2, config: NgbAccordionConfig, private _router: Router) {
         config.closeOthers = true;
         config.type = 'info';
     }
@@ -58,5 +59,9 @@ export class ComponentsComponent implements OnInit, OnDestroy {
         navbar.classList.remove('navbar-transparent');
         var body = document.getElementsByTagName('body')[0];
         body.classList.remove('index-page');
+    }
+
+    onLogin():any {
+      this._router.navigate(['login']);
     }
 }

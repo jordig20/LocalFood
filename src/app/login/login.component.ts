@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
+import { FormBuilder } from "@angular/forms";
+import { ApiService } from "../core/services/api.service";
 
 @Component({
   selector: 'app-login',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  checkoutForm;
+
+  constructor(private formBuilder: FormBuilder,
+              private _api: ApiService
+  ) {
+    this.checkoutForm = this.formBuilder.group({
+      mail: '',
+      password: ''
+    });
+  }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(user) {
+
   }
 
 }
