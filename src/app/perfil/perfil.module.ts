@@ -9,6 +9,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { PerfilInformacionComponent } from './perfil-informacion/perfil-informacion.component';
 import { CoreModule } from '../core/core-module.module';
 import { MatInputModule } from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
     FormsModule,
     MatTabsModule,
     CoreModule,
+    MatExpansionModule,
   ],
   exports: [
     PerfilComponent,

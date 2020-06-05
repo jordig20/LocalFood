@@ -121,7 +121,7 @@ export class PerfilComponent implements OnInit {
     },
   ];
 
-
+  public updated: boolean;
   public edit: boolean;
   public data: User;
   public loaded: boolean = false;
@@ -176,6 +176,7 @@ export class PerfilComponent implements OnInit {
 
     console.log(this.data);
     //this._api.put('user/' + this.data._id, this.data).subscribe(d => console.log('PUT', d));
+    this.updated = true;
     this.edit = false;
   }
 
