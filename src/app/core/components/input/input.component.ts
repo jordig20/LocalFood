@@ -6,9 +6,9 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './input.component.html',
 })
 export class InputComponent {
-  @Input('type') type: string = 'text';
-  //@Input() disabled: boolean = false;
-  @Input() edit: boolean = true;
+  @Input('type') type: String = 'text';
+  @Input() disabled: Boolean;
+  @Input() edit: Boolean = true;
   @Input() form: FormGroup;
   @Input() key: string;
   @Input() label: string;

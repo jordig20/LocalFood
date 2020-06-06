@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { StarRatingColor } from '../star-rating/star-rating.component';
 import { ApiService } from 'app/core/services/api.service';
 import { HttpClient } from '@angular/common/http';
+import { SenderService } from '../core/services/sender.service';
 
 @Component({
   selector: 'app-cocineros',
@@ -16,7 +17,6 @@ export class CocinerosComponent implements OnInit {
   starColor: StarRatingColor = StarRatingColor.accent;
   starColorP: StarRatingColor = StarRatingColor.primary;
   starColorW: StarRatingColor = StarRatingColor.warn;
-
   public tipoCocinero: any[] = ['Homechef', 'Restaurant', 'Cocinero amateur'];
   public search: any;
   public selected: any;
@@ -27,15 +27,15 @@ export class CocinerosComponent implements OnInit {
   constructor(private _router: Router,
               private _api: ApiService,
               private _http: HttpClient,
+              private _sender: SenderService,
   ) {
   }
 
   ngOnInit(): void {
-
+    this.search = this._sender.serviceData;
     this._api.get('user/allusers/' + this.search).subscribe(r => {
       this.cocineros = r;
-      console.log(this.cocineros);
-
+      console.log(this.search);
     });
 
   }
@@ -64,6 +64,7 @@ export class CocinerosComponent implements OnInit {
   onKey(event) {
     const inputValue = event.target.value;
     this.search = event.target.value;
+    this._sender.serviceData = this.search;
 
     this._api.get('user/allusers/' + this.search).subscribe(r => {
       this.cocineros = r;
