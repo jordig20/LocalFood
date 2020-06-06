@@ -12,15 +12,15 @@
           <span _ngcontent-c4="" class="navbar-toggler-bar bar3"></span>
         </button>
       </div>
-      <div _ngcontent-c3="" class="col-sm-6 col-lg-3">
-        <div _ngcontent-c3="" class="input-group">
-          <div _ngcontent-c3="" class="input-group-prepend">
-            <span _ngcontent-c3="" class="input-group-text"><i _ngcontent-c3="" class="fa fa-search"></i>
-            </span>
-          </div>
-          <input _ngcontent-c3="" class="form-control" placeholder="Buscar ciudad" type="text">
-        </div>
-      </div>
+<!--      <div _ngcontent-c3="" class="col-sm-6 col-lg-3">-->
+<!--        <div _ngcontent-c3="" class="input-group">-->
+<!--          <div _ngcontent-c3="" class="input-group-prepend">-->
+<!--            <span _ngcontent-c3="" class="input-group-text"><i _ngcontent-c3="" class="fa fa-search"></i>-->
+<!--            </span>-->
+<!--          </div>-->
+<!--          <input _ngcontent-c3="" class="form-control" placeholder="Buscar ciudad" type="text">-->
+<!--        </div>-->
+<!--      </div>-->
       <div _ngcontent-c4="" class="collapse navbar-collapse" id="example-navbar-primary">
         <ul _ngcontent-c4="" class="navbar-nav ml-auto">
           <li (click)="onProducts()" _ngcontent-c4="" class="nav-item">
@@ -45,7 +45,7 @@
     </div>
   </nav>
 
-  <div>
+  <div *ngIf="form">
 
     <div class="card" style="width: 35%; min-width: 30%; margin: 0 auto">
       <div class="card-header">
@@ -60,7 +60,12 @@
             </div>
             <div class="col-md-6">
               <div style="margin-left: -50px;  text-align: center">
-                <h5 class="card-title" style="margin-bottom: 0px; margin-top: 5px; ">{{producto.name}}</h5>
+                <h5 *ngIf="!isMine" class="card-title"
+                    style="margin-bottom: 0px; margin-top: 5px; ">{{producto.name}}</h5>
+                <h5 *ngIf="isMine" class="card-title" style="margin-bottom: 0px; margin-top: 5px; ">
+                  <app-input [form]="form" [key]='"name"' [label]='"Nombre"'></app-input>
+                </h5>
+
                 <app-star-rating [color]="starColor" [starCount]=5 rating="{{producto.finalValuation}}"
                                  style=""></app-star-rating>
               </div>
@@ -70,7 +75,9 @@
               <div *ngIf="isMine" style="margin: 0;
                    position: absolute;
                    right: 0%;">
-                <button (click)="onCook()" class="btn btn-success" style=""><i class="fas fa-edit"></i>
+                <button (click)="onSave()" [disabled]="form.invalid" class="btn btn-success btn-sm" style="">GUARDAR
+                </button>
+                <button class="btn btn-danger btn-sm" style="">ELIMINAR
                 </button>
               </div>
               <div *ngIf="!isMine" style="margin: 0;
@@ -84,24 +91,46 @@
         </div>
       </div>
 
+      <div *ngIf="!isMine">
+        <div class="card-body">
+          <img src="{{producto.imagen}}"
+               style="width: 100%; height: 100%; object-fit: cover; -webkit-border-radius: 10px; border-radius: 10px;">
+          <div class="dropdown-divider"></div>
+        </div>
 
-      <div class="card-body">
-        <img src="{{producto.imagen}}"
-             style="width: 100%; height: 100%; object-fit: cover; -webkit-border-radius: 10px; border-radius: 10px;">
-        <div class="dropdown-divider"></div>
+        <div class="card-body">
+          <h5 class="card-title">PRECIO</h5>
+          <p class="card-text">{{producto.price}}</p>
+          <div class="dropdown-divider"></div>
+          <h5 class="card-title">DESCRIPCIÓN</h5>
+          <p class="card-text">{{producto.description}}</p>
+          <div class="dropdown-divider"></div>
+          <h5 class="card-title">INGREDIENTES</h5>
+          <p class="card-text">{{producto.ingredients}}</p>
+        </div>
       </div>
+      <div *ngIf="isMine">
+        <div class="card-body">
+          <img src="{{producto.imagen}}"
+               style="width: 100%; height: 100%; object-fit: cover; -webkit-border-radius: 10px; border-radius: 10px;">
+          <div class="dropdown-divider"></div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">PRECIO</h5>
+          <app-input [form]="form" [key]='"price"' [label]='"Precio"'></app-input>
 
-      <div class="card-body">
-        <h5 class="card-title">PRECIO</h5>
-        <p class="card-text">{{producto.price}}</p>
-        <div class="dropdown-divider"></div>
-        <h5 class="card-title">DESCRIPCIÓN</h5>
-        <p class="card-text">{{producto.description}}</p>
-        <div class="dropdown-divider"></div>
-        <h5 class="card-title">INGREDIENTES</h5>
-        <p class="card-text">{{producto.ingredients}}</p>
+          <div class="dropdown-divider"></div>
+          <h5 class="card-title">DESCRIPCIÓN</h5>
+          <app-input [form]="form" [key]='"description"' [label]='"Descripción"'></app-input>
+
+          <div class="dropdown-divider"></div>
+          <h5 class="card-title">INGREDIENTES</h5>
+          <app-input [form]="form" [key]='"ingredients"' [label]='"Ingredientes"'></app-input>
+
+        </div>
       </div>
     </div>
+
   </div>
 
 </div>

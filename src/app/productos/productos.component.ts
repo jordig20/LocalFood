@@ -17,10 +17,12 @@ export class ProductosComponent implements OnInit {
   starColorW: StarRatingColor = StarRatingColor.warn;
 
   public tipoProd: any[] = ['postre', 'japonesa', 'tradicional', 'aperitivo'];
+  public selected: any;
 
   public loaded: boolean = false;
 
   public productos: any[] = [];
+  public prodCat: any[] = [];
   public search: any;
 
   constructor(private _router: Router,
@@ -47,47 +49,16 @@ export class ProductosComponent implements OnInit {
   }
 
   selectOption(event: any) {
-    if (event === 'postre') {
-      this.productos = [
-        {
-          _id: 1,
-          nombre: 'helado1',
-          tipo: 'postre',
-          ingredientes: 'mucho amor',
-          descripcion: 'tengo calor',
-          imagen: 'https://i.pinimg.com/474x/e2/7b/59/e27b5900c4922133d0fedf0448b5e034.jpg',
-          valoracion: 3,
-        },
-      ];
-    }
-
-    if (event === 'aperitivo') {
-      this.productos = [
-        {
-          _id: 2,
-          nombre: 'helado2',
-          tipo: 'aperitivo',
-          ingredientes: 'mucho amor',
-          descripcion: 'tengo calor',
-          imagen: 'https://i2.wp.com/abajatemperatura.es/wp-content/uploads/2018/06/cerezasABT4.jpg?resize=256%2C256&ssl=1',
-          valoracion: 2,
-
-        },
-        {
-          _id: 3,
-          nombre: 'helado3',
-          tipo: 'pescado',
-          ingredientes: 'mucho amor',
-          descripcion: 'tengo calor',
-          imagen: 'https://pbs.twimg.com/profile_images/378800000042558287/d3a87a1ff5ea5c06a02f5f418488d456.jpeg',
-          valoracion: 1,
-
-        },
-      ];
-    }
-
-
-    console.log(event);
+    this.selected = event;
+    this._api.get('product/' + this.search).subscribe(r => {
+      this.prodCat = [];
+      for (let x = 0; x < r.length; x++) {
+        if (r[x].type === this.selected) {
+          this.prodCat.push(r[x]);
+        }
+      }
+      this.productos = this.prodCat;
+    });
   }
 
   onKey(event) {
@@ -100,3 +71,6 @@ export class ProductosComponent implements OnInit {
     }
   }
 }
+
+
+

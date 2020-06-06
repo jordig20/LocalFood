@@ -19,22 +19,6 @@ export class PerfilComponent implements OnInit {
   starColorW: StarRatingColor = StarRatingColor.warn;
 
   public data: any = {};
-  // public user = {
-  //   type: 'Chef amateur',
-  //
-  //   name: 'George',
-  //   city: 'Reus',
-  //   adress: 'C/ calle n5',
-  //   email: 'fdgdf.com',
-  //   telf: '543321543',
-  //   cp: '432982',
-  //   mail: 'fgdfg',
-  //   delivery: true,
-  //   premiumUser: false,
-  //   password: 'fdsfsd',
-  //   finalValuation: 3,
-  //
-  // };
   public productos: any[] = [];
 
   public updated: boolean;
@@ -67,7 +51,6 @@ export class PerfilComponent implements OnInit {
 
 
     this.edit = false;
-    // this.data = this.user;
     this.buildForm();
 
   }
@@ -96,37 +79,27 @@ export class PerfilComponent implements OnInit {
     this.data.telf = values.telf;
 
     console.log(this.data);
-    // this._api.put('user/' + this.data._id, this.data).subscribe(d => console.log('PUT', d));
     this._api.put('user/update/' + this.data._id, this.data).subscribe(d => console.log('PUT', d));
     this.updated = true;
     this.edit = false;
   }
 
 
-  onUpdatePerfil(event: any): void {
-    this.data = event;
-  }
-
   onCook() {
+    this._router.navigate(['cocineros']);
 
   }
 
   onProducts() {
+    this._router.navigate(['productos']);
 
   }
 
-  onKey($event: KeyboardEvent) {
-
-  }
 
   onSelect(id: any): void {
     this._router.navigate(['productos/' + id]);
   }
 
-  onUpdateSedes(event: any) {
-    this.data = event;
-
-  }
 
   private buildForm(): void {
     this.oldData = JSON.parse(JSON.stringify(this.data));
@@ -135,7 +108,7 @@ export class PerfilComponent implements OnInit {
       city: [this.data.city, Validators.required],
       type: [this.data.type, Validators.required],
       adress: [this.data.adress, Validators.required],
-      telf: [this.data.telf],
+      telf: [this.data.telf, Validators.required],
 
     });
   }

@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StarRatingColor } from '../../star-rating/star-rating.component';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'app/core/services/api.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-productos-view',
@@ -13,21 +14,30 @@ export class ProductosViewComponent implements OnInit {
   starColor: StarRatingColor = StarRatingColor.accent;
   public isMine: Boolean;
   public producto: any = {};
+  public form: FormGroup;
+
   public usuario: any = {};
   public ownerID: String = '5eda86e78a1e1905083b8439';
+  public edit: boolean;
+  private oldData: any[] = [];
 
   constructor(private _route: ActivatedRoute,
               private _router: Router,
               private _api: ApiService,
               private _http: HttpClient,
+              private _fb: FormBuilder,
   ) {
   }
 
 
   ngOnInit(): void {
     const id: string = this._route.snapshot.paramMap.get('id');
-    this._api.get('product/getone/' + id).subscribe(d => {
-      this.producto = d[0];
+    this.edit = false;
+
+    this._api.get('product/getone/' + id).subscribe(a => {
+      //this.producto = this.parseData(a[0]);
+      this.producto = a[0];
+      this.buildForm();
 
       if (this.ownerID === this.producto.userId) {
         this.isMine = true;
@@ -37,6 +47,7 @@ export class ProductosViewComponent implements OnInit {
       this._api.get('user/getone/' + this.producto.userId).subscribe(r => {
         this.usuario = r[0];
       });
+
     });
   }
 
@@ -51,6 +62,44 @@ export class ProductosViewComponent implements OnInit {
 
   onProfile() {
     this._router.navigate(['cocineros/' + this.producto.userId]);
+  }
+
+  onSave(): void {
+
+    const values: any = this.form.getRawValue();
+
+    this.producto.name = values.name;
+    this.producto.price = values.price;
+    this.producto.description = values.description;
+    this.producto.ingredients = values.ingredients;
+
+    //this.producto = { ...this.producto, ...this.form.getRawValue() };
+    this._api.put('product/update/' + this.producto._id, this.producto).subscribe(d => console.log('PUT', d));
+
+  }
+
+  onEdit(): void {
+    this.edit = !this.edit;
+    if (!this.edit) {
+      this.onCancel();
+    }
+  }
+
+  onCancel(): void {
+    this.producto = JSON.parse(JSON.stringify(this.oldData));
+    this.buildForm();
+    this.edit = false;
+
+  }
+
+  private buildForm(): void {
+    this.oldData = JSON.parse(JSON.stringify(this.producto));
+    this.form = this._fb.group({
+      name: [this.producto.name, Validators.required],
+      price: [this.producto.price, Validators.required],
+      description: [this.producto.description, Validators.required],
+      ingredients: [this.producto.ingredients, Validators.required],
+    });
   }
 
 
