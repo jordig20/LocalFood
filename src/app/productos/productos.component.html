@@ -94,11 +94,11 @@
             <div class="card text-center bg-light mb-5 " style="width: 18rem; margin: 0 auto">
               <img alt="Card image cap" class="card-img-top" src="{{row.imagen}}"
                    style="width: 400px; height: 300px; object-fit: cover; ">
-              <div class="card-header">{{row.nombre}}</div>
+              <div class="card-header">{{row.name}}</div>
               <div class="card-body">
-                <h5 class="card-title">{{row.nombre}}</h5>
-                <p class="card-text">{{row.descripcion}}</p>
-                <app-star-rating [color]="starColor" [starCount]=5 rating="{{row.valoracion}}"></app-star-rating>
+                <h5 class="card-title">{{row.price}}</h5>
+                <p class="card-text">{{row.description}}</p>
+                <app-star-rating [color]="starColor" [starCount]=5 rating="{{row.finalValuation}}"></app-star-rating>
 
                 <button (click)="onSelect(row._id)" class="btn btn-primary btn-sm" type="button">Ir a producto</button>
 
