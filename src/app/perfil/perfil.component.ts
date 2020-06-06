@@ -18,7 +18,6 @@ export class PerfilComponent implements OnInit {
   starColorP: StarRatingColor = StarRatingColor.primary;
   starColorW: StarRatingColor = StarRatingColor.warn;
 
-
   public data: any = {};
   // public user = {
   //   type: 'Chef amateur',
@@ -120,8 +119,8 @@ export class PerfilComponent implements OnInit {
 
   }
 
-  onSelect(_id: any) {
-
+  onSelect(id: any): void {
+    this._router.navigate(['productos/' + id]);
   }
 
   onUpdateSedes(event: any) {

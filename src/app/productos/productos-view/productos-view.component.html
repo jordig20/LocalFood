@@ -53,21 +53,27 @@
           <div class="row">
             <div (click)="onProfile()" class="col-md-4" style="cursor: pointer;">
 
-              <img alt="Card image cap" src="{{producto.imagenVendedor}}"
+              <img alt="Card image cap" src=""
                    style="border-radius:50%; width: 57px; height: 57px; border-style: solid; border-color: #2CA8FF ; border-width: 1px;">
               <br>
-              {{producto.nombrevendedor}}
+              {{usuario.name}}
             </div>
             <div class="col-md-6">
               <div style="margin-left: -50px;  text-align: center">
-                <h5 class="card-title" style="margin-bottom: 0px; margin-top: 5px; ">{{producto.nombre}}</h5>
-                <app-star-rating [color]="starColor" [starCount]=5 rating="{{producto.valoracion}}"
+                <h5 class="card-title" style="margin-bottom: 0px; margin-top: 5px; ">{{producto.name}}</h5>
+                <app-star-rating [color]="starColor" [starCount]=5 rating="{{producto.finalValuation}}"
                                  style=""></app-star-rating>
               </div>
             </div>
 
             <div class="col-md-2">
-              <div style="margin: 0;
+              <div *ngIf="isMine" style="margin: 0;
+                   position: absolute;
+                   right: 0%;">
+                <button (click)="onCook()" class="btn btn-success" style=""><i class="fas fa-edit"></i>
+                </button>
+              </div>
+              <div *ngIf="!isMine" style="margin: 0;
                    position: absolute;
                    right: 0%;">
                 <button (click)="onCook()" class="btn btn-success" style=""><i class="fas fa-shopping-basket"></i>
@@ -86,11 +92,14 @@
       </div>
 
       <div class="card-body">
+        <h5 class="card-title">PRECIO</h5>
+        <p class="card-text">{{producto.price}}</p>
+        <div class="dropdown-divider"></div>
         <h5 class="card-title">DESCRIPCIÓN</h5>
-        <p class="card-text">{{producto.descripcion}}</p>
+        <p class="card-text">{{producto.description}}</p>
         <div class="dropdown-divider"></div>
         <h5 class="card-title">INGREDIENTES</h5>
-        <p class="card-text">{{producto.ingredientes}}</p>
+        <p class="card-text">{{producto.ingredients}}</p>
       </div>
     </div>
   </div>

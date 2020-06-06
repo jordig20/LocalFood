@@ -18,6 +18,7 @@ export class ProductosComponent implements OnInit {
 
   public tipoProd: any[] = ['postre', 'japonesa', 'tradicional', 'aperitivo'];
 
+  public loaded: boolean = false;
 
   public productos: any[] = [];
   public search: any;
@@ -92,10 +93,10 @@ export class ProductosComponent implements OnInit {
   onKey(event) {
     this.search = event.target.value;
     this._sender.serviceData = this.search;
-    this._api.get('product/' + this.search).subscribe(r => {
-      this.productos = r;
-
-    });
-
+    if (this.search !== '') {
+      this._api.get('product/' + this.search).subscribe(r => {
+        this.productos = r;
+      });
+    }
   }
 }

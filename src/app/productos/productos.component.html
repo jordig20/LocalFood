@@ -85,10 +85,16 @@
             </mat-option>
           </mat-select>
         </mat-form-field>
+
+      </div>
+      <div [style.backgroundColor]="'white'" class="card-header">
+
+        <h3 style="text-align: center">Productos en {{search}}</h3>
       </div>
 
-
       <div class="card-body">
+        <div *ngIf="loaded"> no hay nada premoh</div>
+
         <div class="row">
           <div *ngFor="let row of productos, index as i" class="col-sm-4">
             <div class="card text-center bg-light mb-5 " style="width: 18rem; margin: 0 auto">
