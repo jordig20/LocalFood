@@ -3,7 +3,6 @@ import {FormBuilder, Validators, FormControl} from "@angular/forms";
 import { ApiService } from "../core/services/api.service";
 import { Router } from "@angular/router";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
-import {AlertComponent} from "../core/components/alert/alert.component";
 
 @Component({
   selector: 'app-signup',
@@ -13,6 +12,7 @@ import {AlertComponent} from "../core/components/alert/alert.component";
 export class SignupComponent implements OnInit {
 
   checkoutForm;
+  saved: boolean = false;
 
   public data: any = {};
 
@@ -50,6 +50,7 @@ export class SignupComponent implements OnInit {
     }
     user.type = user.type.toLowerCase();
       this._api.post('user/add', user).subscribe(r => {
+        this.saved = true;
         setTimeout(this.navigateToLogin.bind(this),3000);
       }
     );

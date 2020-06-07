@@ -51,9 +51,10 @@
           </select>
         </div>
 
-        <button mat-stroked-button (click)="openSnackBar()" type="submit" class="btn btn-primary" [disabled]="checkoutForm.pristine || checkoutForm.invalid">Registrarse</button>
+        <button type="submit" class="btn btn-primary" [disabled]="checkoutForm.pristine || checkoutForm.invalid">Registrarse</button>
       </form>
       <p>¿Ya tienes cuenta? <a href="/login">Inicia sesión aquí</a></p>
     </div>
+    <app-alert *ngIf="saved" [text]="'Registro finalizado con éxito, redirigiendo a Iniciar sesión'"></app-alert>
   </div>
 </div>

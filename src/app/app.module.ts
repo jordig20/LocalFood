@@ -19,6 +19,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatSelectModule } from '@angular/material/select';
 import { StarRatingModule } from './star-rating/star-rating.module';
 import { HttpClientModule } from '@angular/common/http';
+import {CoreModule} from "./core/core-module.module";
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { HttpClientModule } from '@angular/common/http';
     StarRatingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

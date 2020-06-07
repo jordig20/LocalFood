@@ -59,7 +59,10 @@
           </mat-select>
         </mat-form-field>
       </div>
+      <div [style.backgroundColor]="'white'" class="card-header">
 
+        <h3 style="text-align: center">Vendedores en {{search}}</h3>
+      </div>
 
       <div class="card-body">
         <div class="row">
@@ -67,7 +70,7 @@
             <div class="card text-center bg-light mb-5 " style="width: 18rem; margin: 0 auto">
               <img alt="Card image cap" class="card-img-top" src="{{row.imagen}}"
                    style="width: 400px; height: 300px; object-fit: cover; ">
-              <div class="card-header">{{row.name}}</div>
+              <div class="card-header">{{row.city}}</div>
               <div class="card-body">
                 <h5 class="card-title">{{row.name}}</h5>
                 <p class="card-text">{{row.city}}
