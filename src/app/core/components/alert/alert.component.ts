@@ -16,7 +16,7 @@ export class AlertComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.openSnackBar('cerrar');
+    this.openSnackBar('Cerrar');
   }
 
   openSnackBar(action: string) {

@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, Validators} from "@angular/forms";
+import {FormBuilder, Validators, FormControl} from "@angular/forms";
 import { ApiService } from "../core/services/api.service";
 import { Router } from "@angular/router";
-import { Observable } from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import {EncrDecrService} from "../core/services/encrdecr.service";
+import {GlobalConstants} from "../common/global-constants";
+import Global = WebAssembly.Global;
+
 
 @Component({
   selector: 'app-signup',
@@ -13,19 +16,30 @@ import {HttpClient} from "@angular/common/http";
 export class SignupComponent implements OnInit {
 
   checkoutForm;
+  saved: boolean = false;
 
   public data: any = {};
 
   constructor(private _formBuilder: FormBuilder,
               private _api: ApiService,
               private _http: HttpClient,
-              private _router: Router
+              private _router: Router,
+              private _encrDecr: EncrDecrService
   ) {
     this.checkoutForm = this._formBuilder.group({
-      name: '',
-      mail: '',
-      password: '',
+      name: new FormControl('', [
+        Validators.required
+      ]),
+      mail: new FormControl('', [
+        Validators.required,
+        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(8)
+      ]),
       city: 'Reus',
+      type: 'Cliente'
     });
   }
 
@@ -33,10 +47,25 @@ export class SignupComponent implements OnInit {
   }
 
   onSubmit(user) {
+    user.name = user.name.toLowerCase();
+    user.mail = user.mail.toLowerCase();
+    user.city = user.city.toLowerCase();
+    if(user.type == "Cliente") {
+      user.type = "user";
+    }
+    user.type = user.type.toLowerCase();
+    user.password = this._encrDecr.set(GlobalConstants.pwdKey, user.password);
 
-    console.log(user);
-    this._api.post('user/add', user).subscribe(r => console.log('POST', r));
+      this._api.post('user/add', user).subscribe(r => {
+        this.saved = true;
+        setTimeout(this.navigateToLogin.bind(this),3000);
+      }
+    );
 
+  }
+
+  navigateToLogin() {
+    this._router.navigate(['login']);
   }
 
 }

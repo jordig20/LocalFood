@@ -4,13 +4,43 @@
       <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
         <h1>Registrarse</h1>
         <div class="form-group">
-          <input type="text" class="form-control" id="name" formControlName="name" placeholder="Nombre y apellidos" required>
+          <input [class.is-invalid] = "checkoutForm.get('name').invalid && checkoutForm.get('name').touched" type="text" class="form-control" id="name" formControlName="name" placeholder="Nombre y apellidos" required>
+        </div>
+        <div *ngIf="checkoutForm.controls['name'].invalid && (checkoutForm.controls['name'].dirty || checkoutForm.controls['name'].touched)" class="alert alert-danger">
+          <div *ngIf="checkoutForm.controls['name'].errors.required">
+            Por favor introduce nombre y apellidos
+          </div>
         </div>
         <div class="form-group">
-          <input type="email" class="form-control" id="email" formControlName="mail" placeholder="Dirección de email" required>
+          <input [class.is-invalid] = "checkoutForm.get('mail').invalid && checkoutForm.get('mail').touched"
+                 type="email" class="form-control" id="email" formControlName="mail" placeholder="Dirección de email" required>
+        </div>
+        <div *ngIf="checkoutForm.controls['mail'].invalid && (checkoutForm.controls['mail'].dirty || checkoutForm.controls['mail'].touched)" class="alert alert-danger">
+          <div *ngIf="checkoutForm.controls['mail'].errors.required">
+            Por favor introduce tu dirección de email
+          </div>
+          <div *ngIf="checkoutForm.controls['mail'].errors.pattern && !checkoutForm.controls['mail'].errors.required">
+            Debe ser una dirección de email correcta
+          </div>
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="password" formControlName="password" placeholder="Contraseña" required>
+          <input [class.is-invalid] = "checkoutForm.get('password').invalid && checkoutForm.get('password').touched" type="password" class="form-control" id="password" formControlName="password" placeholder="Contraseña">
+        </div>
+        <div *ngIf="checkoutForm.controls['password'].invalid && (checkoutForm.controls['password'].dirty || checkoutForm.controls['password'].touched)" class="alert alert-danger">
+          <div *ngIf="checkoutForm.controls['password'].errors.required">
+            Por favor introduce tu contraseña
+          </div>
+          <div *ngIf="checkoutForm.controls['password'].errors.minlength && !checkoutForm.controls['password'].errors.required">
+            Recuerda que tu contraseña debe tener al menos 8 caracteres
+          </div>
+        </div>
+
+        <div class="form-group">
+          <select class="form-control" formControlName="type" id="type" required>
+            <option>Cliente</option>
+            <option>HomeChef</option>
+            <option>Restaurant</option>
+          </select>
         </div>
         <div class="form-group">
           <select class="form-control" formControlName="city" id="city" required>
@@ -20,9 +50,11 @@
             <option>Sevilla</option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary">Registrarse</button>
+
+        <button type="submit" class="btn btn-primary" [disabled]="checkoutForm.pristine || checkoutForm.invalid">Registrarse</button>
       </form>
       <p>¿Ya tienes cuenta? <a href="/login">Inicia sesión aquí</a></p>
     </div>
+    <app-alert *ngIf="saved" [text]="'Registro finalizado con éxito, redirigiendo a Iniciar sesión'"></app-alert>
   </div>
 </div>

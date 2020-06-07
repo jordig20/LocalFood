@@ -19,6 +19,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { MatSelectModule } from '@angular/material/select';
 import { StarRatingModule } from './star-rating/star-rating.module';
 import { HttpClientModule } from '@angular/common/http';
+import {CoreModule} from "./core/core-module.module";
+import {EncrDecrService} from "./core/services/encrdecr.service";
+import { TermsComponent } from './terms/terms.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,7 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     LoginComponent,
     SignupComponent,
-    NavbarComponent
+    TermsComponent
   ],
   imports: [
     BrowserModule,
@@ -45,8 +48,9 @@ import { HttpClientModule } from '@angular/common/http';
     StarRatingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    CoreModule,
   ],
-  providers: [],
+  providers: [EncrDecrService],
   bootstrap: [AppComponent],
   exports: [],
 })

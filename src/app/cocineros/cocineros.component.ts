@@ -17,7 +17,7 @@ export class CocinerosComponent implements OnInit {
   starColor: StarRatingColor = StarRatingColor.accent;
   starColorP: StarRatingColor = StarRatingColor.primary;
   starColorW: StarRatingColor = StarRatingColor.warn;
-  public tipoCocinero: any[] = ['Homechef', 'Restaurant', 'Cocinero amateur'];
+  public tipoCocinero: any[] = ['Homechef', 'Restaurant'];
   public search: any;
   public selected: any;
 
@@ -51,8 +51,7 @@ export class CocinerosComponent implements OnInit {
 
   selectOption(event: any) {
     this.selected = event;
-
-    this._api.get('user/' + this.search + '/' + this.selected).subscribe(r => {
+    this._api.get('user/' + this.search + '/' + this.selected.toLowerCase()).subscribe(r => {
       this.cocineros = r;
       console.log(this.cocineros);
     });
@@ -71,7 +70,6 @@ export class CocinerosComponent implements OnInit {
       console.log(this.cocineros);
 
     });
-
 
   }
 }

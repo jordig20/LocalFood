@@ -16,7 +16,7 @@ export class ProductosComponent implements OnInit {
   starColorP: StarRatingColor = StarRatingColor.primary;
   starColorW: StarRatingColor = StarRatingColor.warn;
 
-  public tipoProd: any[] = ['postre', 'japonesa', 'tradicional', 'aperitivo'];
+  public tipoProd: any[] = ['Postre', 'Japonesa', 'Tradicional', 'Aperitivo'];
   public selected: any;
 
   public loaded: boolean = false;
@@ -32,10 +32,11 @@ export class ProductosComponent implements OnInit {
 
   ngOnInit(): void {
     this.search = this._sender.serviceData;
-
+    if (this.search != undefined) {
+      this.search = this.search.toLowerCase();
+    }
     this._api.get('product/' + this.search).subscribe(r => {
       this.productos = r;
-
     });
 
   }
@@ -53,7 +54,7 @@ export class ProductosComponent implements OnInit {
     this._api.get('product/' + this.search).subscribe(r => {
       this.prodCat = [];
       for (let x = 0; x < r.length; x++) {
-        if (r[x].type === this.selected) {
+        if (r[x].type === this.selected.toLowerCase()) {
           this.prodCat.push(r[x]);
         }
       }
