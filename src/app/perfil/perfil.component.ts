@@ -25,8 +25,8 @@ export class PerfilComponent implements OnInit {
   public edit: boolean;
   public oldData: any;
   public new: boolean;
-  public type: string;
   public form: FormGroup;
+  public type: string;
 
   constructor(
     private _api: ApiService,
@@ -55,6 +55,9 @@ export class PerfilComponent implements OnInit {
 
   }
 
+  receiveMessage(type: any) {
+    this.type = type;
+  }
 
   onCancel(): void {
     this.data = JSON.parse(JSON.stringify(this.oldData));
@@ -62,23 +65,15 @@ export class PerfilComponent implements OnInit {
     this.edit = false;
   }
 
-  onEdit(): void {
-    this.edit = !this.edit;
-    if (!this.edit) {
-      this.onCancel();
-    }
-  }
 
   onSave(): void {
     const values: any = this.form.getRawValue();
-
     this.data.name = values.name;
     this.data.adress = values.adress;
     this.data.city = values.city;
-    this.data.type = values.type;
+    this.data.type = this.type;
     this.data.telf = values.telf;
 
-    console.log(this.data);
     this._api.put('user/update/' + this.data._id, this.data).subscribe(d => console.log('PUT', d));
     this.updated = true;
     this.edit = false;
@@ -112,5 +107,6 @@ export class PerfilComponent implements OnInit {
 
     });
   }
+
 }
 

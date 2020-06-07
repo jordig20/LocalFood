@@ -85,20 +85,24 @@
                 </div>
               </div>
             </div>
+
           </div>
         </mat-tab>
         <mat-tab label="INFORMACIÓN">
           <app-perfil-informacion
+            (messageEvent)="receiveMessage($event)"
             [data]="data"
             [edit]="edit"
             [form]="form"
+            [receivedType]="data.type"
           >
-
           </app-perfil-informacion>
           <div style="float:right; margin-right: 50px; margin-top: -55px">
             <button (click)="onCancel()" class="btn btn-secondary btn-sm">CANCELAR</button>
-            <button (click)="onSave()" [disabled]="form.invalid" class=" btn btn-success btn-sm">GUARDAR</button>
+            <button (click)="onSave()" [disabled]="form.invalid" class=" btn btn-success btn-sm">GUARDAR
+            </button>
           </div>
+
           <app-alert *ngIf="updated" [text]="'Datos actualizados con éxito'"></app-alert>
         </mat-tab>
         <mat-tab label="OPINIONES"> Content 3</mat-tab>
