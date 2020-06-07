@@ -40,7 +40,7 @@
           <!--                     [label]='"Categoria"'></app-input>-->
           <mat-form-field>
             <mat-label>Categoria: {{receivedType}}</mat-label>
-            <mat-select (ngModelChange)="selectOption($event)" [(value)]="hola" [ngModel]="tipoCocinero">
+            <mat-select (ngModelChange)="selectOption($event)" [ngModel]="tipoCocinero">
               <mat-option *ngFor="let tipo of tipoCocinero" [value]="tipo">
                 {{ tipo }}
               </mat-option>
