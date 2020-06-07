@@ -13,6 +13,8 @@ import { UseridService } from '../core/services/userid.service';
 export class ProductosComponent implements OnInit {
   rating: number = 3;
   starCount: number = 5;
+  public ownerID: String = '5edc06cf4b07101ea49b5daf';
+
   starColor: StarRatingColor = StarRatingColor.accent;
   starColorP: StarRatingColor = StarRatingColor.primary;
   starColorW: StarRatingColor = StarRatingColor.warn;
@@ -82,6 +84,15 @@ export class ProductosComponent implements OnInit {
         this.productos = r;
       });
     }
+  }
+
+  onAdd() {
+    this._api.get('user/getone/' + this.ownerID).subscribe(r => {
+      if (r[0].type !== 'user') {
+
+        this._router.navigate(['productos/new']);
+      }
+    });
   }
 }
 
