@@ -37,8 +37,8 @@
   </nav>
   <div>
 
-    <div *ngIf="userType === 'user'">
-      LOS USUARIOS NORMALES NO PUEDEN SUBIR PRODUCTOS
+    <div class="card text-center" *ngIf="userType === 'user'">
+      <p>LOS CLIENTES NO PUEDEN CREAR PRODUCTOS</p>
     </div>
 
     <div *ngIf="userType !== 'user'">
@@ -100,13 +100,14 @@
               <mat-label>Categoria</mat-label>
               <mat-select (ngModelChange)="selectOption($event)" [ngModel]="foodType">
                 <mat-option *ngFor="let tipo of foodType" [value]="tipo">
-                  {{ tipo }}
+                  <span class="text-capitalize">{{ tipo }}</span>
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
       </div>
+      <app-alert *ngIf="saved" [text]="'¡Producto creado con éxito!'"></app-alert>
     </div>
   </div>
 

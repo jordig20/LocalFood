@@ -18,11 +18,12 @@ export class ProductosCreateComponent implements OnInit {
   public form: FormGroup;
   @Input() tipo: any;
   public usuario: any = {};
-  public ownerID: String = '5edc08e34317b449d8e8ef12';
+  public ownerID: String = '5edc06cf4b07101ea49b5daf';
   public edit: boolean;
   public foodType: any[] = ['aperitivo', 'postre', 'japonesa', 'tradicional', 'fastFood'];
   public userType: string;
   private oldData: any[] = [];
+  public saved: boolean = false;
 
   constructor(private _route: ActivatedRoute,
               private _router: Router,
@@ -66,10 +67,13 @@ export class ProductosCreateComponent implements OnInit {
     this.producto.price = values.price;
     this.producto.description = values.description;
     this.producto.ingredients = values.ingredients;
-    this.producto.type = this.tipo;
+    this.producto.type = this.tipo.toLowerCase();
     this.producto.userId = this.ownerID;
     this.producto.finalValuations = null;
-    this._api.post('product/add', this.producto).subscribe(() => this._router.navigate(['productos']));
+    this._api.post('product/add', this.producto).subscribe(() => {
+        this.saved = true;
+        this.ngOnInit();
+    });
   }
 
   selectOption(event: any) {
