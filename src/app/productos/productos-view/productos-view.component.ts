@@ -73,24 +73,10 @@ export class ProductosViewComponent implements OnInit {
     this.producto.description = values.description;
     this.producto.ingredients = values.ingredients;
 
-    //this.producto = { ...this.producto, ...this.form.getRawValue() };
     this._api.put('product/update/' + this.producto._id, this.producto).subscribe(d => console.log('PUT', d));
 
   }
 
-  onEdit(): void {
-    this.edit = !this.edit;
-    if (!this.edit) {
-      this.onCancel();
-    }
-  }
-
-  onCancel(): void {
-    this.producto = JSON.parse(JSON.stringify(this.oldData));
-    this.buildForm();
-    this.edit = false;
-
-  }
 
   private buildForm(): void {
     this.oldData = JSON.parse(JSON.stringify(this.producto));

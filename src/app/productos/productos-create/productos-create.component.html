@@ -1,1 +1,114 @@
-<p>productos-create works!</p>
+<div class="templates-all">
+  <nav _ngcontent-c4="" class="navbar navbar-expand-lg bg-primary">
+    <div _ngcontent-c4="" class="container">
+      <div _ngcontent-c4="" class="navbar-translate">
+        <a _ngcontent-c4="" class="navbar-brand">PRODUCTOS</a>
+        <button _ngcontent-c4="" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation" class="navbar-toggler" data-target="#example-navbar-primary"
+                data-toggle="collapse" type="button">
+          <span _ngcontent-c4="" class="navbar-toggler-bar bar1"></span>
+          <span _ngcontent-c4="" class="navbar-toggler-bar bar2"></span>
+          <span _ngcontent-c4="" class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+
+      <div _ngcontent-c4="" class="collapse navbar-collapse" id="example-navbar-primary">
+        <ul _ngcontent-c4="" class="navbar-nav ml-auto">
+          <li (click)="onProducts()" _ngcontent-c4="" class="nav-item">
+            <a _ngcontent-c4="" class="nav-link">
+              <i _ngcontent-c4="" class="now-ui-icons shopping_shop"></i>
+              <p _ngcontent-c4="">PRODUCTOS</p>
+            </a>
+          </li>
+          <li _ngcontent-c4="" class="nav-item">
+            <a (click)="onCook()" _ngcontent-c4="" class="nav-link">
+              <i _ngcontent-c4="" class="now-ui-icons users_circle-08"></i>
+              <p _ngcontent-c4="">COCINEROS</p>
+            </a>
+          </li>
+          <li _ngcontent-c4="" class="nav-item">
+            <a _ngcontent-c4="" class="nav-link"><i _ngcontent-c4="" class="now-ui-icons ui-1_settings-gear-63"></i>
+              <p _ngcontent-c4="">MI PERFIL</p>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div>
+
+    <div *ngIf="userType === 'user'">
+      LOS USUARIOS NORMALES NO PUEDEN SUBIR PRODUCTOS
+    </div>
+
+    <div *ngIf="userType !== 'user'">
+
+      <div *ngIf="form">
+
+        <div class="card" style="width: 35%; min-width: 30%; margin: 0 auto">
+          <div class="card-header">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-4" style="cursor: pointer;">
+
+                  <img alt="Card image cap" src=""
+                       style="border-radius:50%; width: 57px; height: 57px; border-style: solid; border-color: #2CA8FF ; border-width: 1px;">
+                  <br>
+                  {{usuario.name}}
+                </div>
+                <div class="col-md-6">
+                  <div style="margin-left: -50px;  text-align: center">
+
+                    <h5 class="card-title" style="margin-bottom: 0px; margin-top: 5px; ">
+                      <app-input [form]="form" [key]='"name"' [label]='"Nombre"'></app-input>
+                    </h5>
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <div style="margin: 0;
+                   position: absolute;
+                   right: 0%;">
+                    <button (click)="onSave()" [disabled]="form.invalid" class="btn btn-success btn-sm" style="">GUARDAR
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!--          <div class="card-body">-->
+          <!--            <img src="{{producto.imagen}}"-->
+          <!--                 style="width: 100%; height: 100%; object-fit: cover; -webkit-border-radius: 10px; border-radius: 10px;">-->
+          <!--            <div class="dropdown-divider"></div>-->
+          <!--          </div>-->
+          <div class="card-body">
+            <h5 class="card-title">PRECIO</h5>
+            <app-input [form]="form" [key]='"price"' [label]='"Precio"'></app-input>
+
+            <div class="dropdown-divider"></div>
+            <h5 class="card-title">DESCRIPCIÓN</h5>
+            <app-input [form]="form" [key]='"description"' [label]='"Descripción"'></app-input>
+
+            <div class="dropdown-divider"></div>
+            <h5 class="card-title">INGREDIENTES</h5>
+            <app-input [form]="form" [key]='"ingredients"' [label]='"Ingredientes"'></app-input>
+            <div class="dropdown-divider"></div>
+            <h5 class="card-title">CATEGORIA</h5>
+            <mat-form-field>
+              <mat-label>Categoria</mat-label>
+              <mat-select (ngModelChange)="selectOption($event)" [ngModel]="foodType">
+                <mat-option *ngFor="let tipo of foodType" [value]="tipo">
+                  {{ tipo }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

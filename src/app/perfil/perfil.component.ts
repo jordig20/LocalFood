@@ -57,6 +57,7 @@ export class PerfilComponent implements OnInit {
 
   receiveMessage(type: any) {
     this.type = type;
+    console.log(this.type);
   }
 
   onCancel(): void {
@@ -71,7 +72,7 @@ export class PerfilComponent implements OnInit {
     this.data.name = values.name;
     this.data.adress = values.adress;
     this.data.city = values.city.toLowerCase();
-    this.data.type = values.type;
+    this.data.type = this.type;
     this.data.telf = values.telf;
 
     this._api.put('user/update/' + this.data._id, this.data).subscribe(d => console.log('PUT', d));
