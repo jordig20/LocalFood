@@ -1,17 +1,21 @@
 <div class="page-header" filter-color="blue">
   <div class="container">
     <div class="card form-center">
-      <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+      <form (ngSubmit)="onSubmit(checkoutForm.value)" [formGroup]="checkoutForm">
         <h1>Iniciar sesión</h1>
         <div class="form-group">
-          <input type="email" class="form-control" id="mail" formControlName="mail" placeholder="Dirección de email">
+          <input class="form-control" formControlName="mail" id="mail" placeholder="Dirección de email" type="email">
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="password" formControlName="password" placeholder="Contraseña">
+          <input class="form-control" formControlName="password" id="password" placeholder="Contraseña" type="password">
         </div>
-        <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+        <button class="btn btn-primary" type="submit">Iniciar sesión</button>
       </form>
-      <p>¿Aún no tienes cuenta? <a href="/signup">Crea una aquí</a></p>
+      <p>¿Aún no tienes cuenta?
+        <a href="/signup">Crea una aquí</a>
+      </p>
     </div>
+    <app-alert *ngIf="loged" [text]="'Sesión iniciada'"></app-alert>
+    <app-alert *ngIf="error" [text]="errorText"></app-alert>
   </div>
 </div>
