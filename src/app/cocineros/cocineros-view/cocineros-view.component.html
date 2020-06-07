@@ -63,6 +63,9 @@
         <mat-tab label="PRODUCTOS">
           <div class="card-body">
             <div class="row">
+              <div *ngIf="productos.length == 0" class="m-auto">
+                No se han encontrado resultados
+              </div>
               <div *ngFor="let row of productos, index as i" class="col-sm-4">
                 <div class="card text-center bg-light mb-5 " style="width: 18rem; margin: 0 auto">
                   <img alt="Card image cap" class="card-img-top" src="{{row.imagen}}"

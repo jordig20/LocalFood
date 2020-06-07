@@ -66,6 +66,9 @@
 
       <div class="card-body">
         <div class="row">
+          <div *ngIf="cocineros.length == 0" class="m-auto">
+            No se han encontrado resultados
+          </div>
           <div *ngFor="let row of cocineros, index as i" class="col-sm-4">
             <div class="card text-center bg-light mb-5 " style="width: 18rem; margin: 0 auto">
               <img alt="Card image cap" class="card-img-top" src="{{row.imagen}}"
@@ -73,8 +76,6 @@
               <div class="card-header text-capitalize">{{row.city}}</div>
               <div class="card-body">
                 <h5 class="card-title">{{row.name}}</h5>
-                <p class="card-text text-capitalize">{{row.city}}
-                </p>
                 <app-star-rating [color]="starColor" [starCount]=5 rating="{{row.finalValuation}}"></app-star-rating>
 
                 <button (click)="onSelect(row._id)" class="btn btn-primary btn-sm" type="button">Ir a perfil</button>

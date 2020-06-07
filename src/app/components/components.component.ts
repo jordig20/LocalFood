@@ -60,11 +60,6 @@ export class ComponentsComponent implements OnInit {
     ngOnInit() {
       var rellaxHeader = new Rellax('.rellax-header');
       this.search = this._sender.serviceData;
-
-        var navbar = document.getElementsByTagName('nav')[0];
-        navbar.classList.add('navbar-transparent');
-        var body = document.getElementsByTagName('body')[0];
-        body.classList.add('index-page');
     }
 
     onLogin():any {
@@ -77,7 +72,6 @@ export class ComponentsComponent implements OnInit {
     if (this.search !== '') {
       this._api.get('product/' + this.search.toLowerCase()).subscribe(r => {
         this.productos = r;
-        console.log(this.productos);
       });
     }
   }

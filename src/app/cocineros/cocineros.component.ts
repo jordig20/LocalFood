@@ -34,8 +34,12 @@ export class CocinerosComponent implements OnInit {
   ngOnInit(): void {
     this.search = this._sender.serviceData;
     this._api.get('user/allusers/' + this.search).subscribe(r => {
-      this.cocineros = r;
-      console.log(this.search);
+      this.cocineros = [];
+      r.forEach(user => {
+        if(user.type != 'user') {
+          this.cocineros.push(user);
+        }
+      });
     });
 
   }
@@ -53,11 +57,7 @@ export class CocinerosComponent implements OnInit {
     this.selected = event;
     this._api.get('user/' + this.search + '/' + this.selected.toLowerCase()).subscribe(r => {
       this.cocineros = r;
-      console.log(this.cocineros);
     });
-
-
-    console.log(event);
   }
 
   onKey(event) {
@@ -66,9 +66,12 @@ export class CocinerosComponent implements OnInit {
     this._sender.serviceData = this.search;
 
     this._api.get('user/allusers/' + this.search).subscribe(r => {
-      this.cocineros = r;
-      console.log(this.cocineros);
-
+      this.cocineros = [];
+      r.forEach(user => {
+        if(user.type != 'user') {
+          this.cocineros.push(user);
+        }
+      });
     });
 
   }

@@ -41,7 +41,6 @@ export class ProductosViewComponent implements OnInit {
 
       if (this.ownerID === this.producto.userId) {
         this.isMine = true;
-        console.log('hola');
       }
 
       this._api.get('user/getone/' + this.producto.userId).subscribe(r => {

@@ -78,7 +78,6 @@ export class PerfilComponent implements OnInit {
     this.data.type = values.type;
     this.data.telf = values.telf;
 
-    console.log(this.data);
     this._api.put('user/update/' + this.data._id, this.data).subscribe(d => console.log('PUT', d));
     this.updated = true;
     this.edit = false;
