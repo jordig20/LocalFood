@@ -27,7 +27,8 @@
             </a>
           </li>
           <li _ngcontent-c4="" class="nav-item">
-            <a _ngcontent-c4="" class="nav-link"><i _ngcontent-c4="" class="now-ui-icons ui-1_settings-gear-63"></i>
+            <a (click)="onProfile()" _ngcontent-c4="" class="nav-link"><i _ngcontent-c4=""
+                                                                          class="now-ui-icons ui-1_settings-gear-63"></i>
               <p _ngcontent-c4="">MI PERFIL</p>
             </a>
           </li>
@@ -37,7 +38,7 @@
   </nav>
   <div>
 
-    <div class="card text-center" *ngIf="userType === 'user'">
+    <div *ngIf="userType === 'user'" class="card text-center">
       <p>LOS CLIENTES NO PUEDEN CREAR PRODUCTOS</p>
     </div>
 

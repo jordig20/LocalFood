@@ -4,6 +4,7 @@ import { StarRatingColor } from '../../star-rating/star-rating.component';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'app/core/services/api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-productos-view',
@@ -19,14 +20,15 @@ export class ProductosViewComponent implements OnInit {
   public usuario: any = {};
   public ownerID: String = '5eda644c443a4b03d48848ee';
   public edit: boolean;
-  private oldData: any[] = [];
   public saved: boolean = false;
+  private oldData: any[] = [];
 
   constructor(private _route: ActivatedRoute,
               private _router: Router,
               private _api: ApiService,
               private _http: HttpClient,
               private _fb: FormBuilder,
+              private _user: AuthService,
   ) {
   }
 
@@ -36,11 +38,10 @@ export class ProductosViewComponent implements OnInit {
     this.edit = false;
 
     this._api.get('product/getone/' + id).subscribe(a => {
-      //this.producto = this.parseData(a[0]);
       this.producto = a[0];
       this.buildForm();
 
-      if (this.ownerID === this.producto.userId) {
+      if (this._user.getId() === this.producto.userId) {
         this.isMine = true;
       }
 

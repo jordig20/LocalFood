@@ -4,6 +4,7 @@ import { StarRatingColor } from '../star-rating/star-rating.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'app/core/services/api.service';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../core/services/auth.service';
 
 @Component({
   selector: 'app-perfil',
@@ -34,6 +35,7 @@ export class PerfilComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _http: HttpClient,
+    private _user: AuthService
   ) {
   }
 

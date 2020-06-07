@@ -4,6 +4,7 @@ import { StarRatingColor } from '../../star-rating/star-rating.component';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'app/core/services/api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-productos-create',
@@ -22,21 +23,22 @@ export class ProductosCreateComponent implements OnInit {
   public edit: boolean;
   public foodType: any[] = ['aperitivo', 'postre', 'japonesa', 'tradicional', 'fastFood'];
   public userType: string;
-  private oldData: any[] = [];
   public saved: boolean = false;
+  private oldData: any[] = [];
 
   constructor(private _route: ActivatedRoute,
               private _router: Router,
               private _api: ApiService,
               private _http: HttpClient,
               private _fb: FormBuilder,
+              private  _user: AuthService,
   ) {
   }
 
 
   ngOnInit(): void {
 
-    this._api.get('user/getone/' + this.ownerID).subscribe(r => {
+    this._api.get('user/getone/' + this._user.getId()).subscribe(r => {
       this.userType = r[0].type;
       this.usuario = r[0];
     });
@@ -58,6 +60,10 @@ export class ProductosCreateComponent implements OnInit {
     this._router.navigate(['productos']);
   }
 
+  onProfile() {
+    this._router.navigate(['perfil/' + this._user.getId()]);
+  }
+
 
   onSave(): void {
 
@@ -68,11 +74,11 @@ export class ProductosCreateComponent implements OnInit {
     this.producto.description = values.description;
     this.producto.ingredients = values.ingredients;
     this.producto.type = this.tipo.toLowerCase();
-    this.producto.userId = this.ownerID;
+    this.producto.userId = this._user.getId();
     this.producto.finalValuations = null;
     this._api.post('product/add', this.producto).subscribe(() => {
-        this.saved = true;
-        this.ngOnInit();
+      this.saved = true;
+      this.ngOnInit();
     });
   }
 
