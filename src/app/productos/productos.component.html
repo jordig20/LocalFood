@@ -81,7 +81,7 @@
           <mat-label>Elige una categoria</mat-label>
           <mat-select (ngModelChange)="selectOption($event)" [ngModel]="tipoProd">
             <mat-option *ngFor="let tipo of tipoProd" [value]="tipo">
-              {{ tipo }}
+              <span class="text-capitalize">{{ tipo }}</span>
             </mat-option>
           </mat-select>
         </mat-form-field>
@@ -89,13 +89,16 @@
       </div>
       <div [style.backgroundColor]="'white'" class="card-header">
 
-        <h3 style="text-align: center">Productos en {{search}}</h3>
+        <h3 style="text-align: center">Productos en <span class="capitalize">{{search}}</span></h3>
       </div>
 
       <div class="card-body">
         <div *ngIf="loaded"> no hay nada premoh</div>
 
         <div class="row">
+          <div *ngIf="productos.length == 0" class="m-auto">
+            No se han encontrado resultados
+          </div>
           <div *ngFor="let row of productos, index as i" class="col-sm-4">
             <div class="card text-center bg-light mb-5 " style="width: 18rem; margin: 0 auto">
               <img alt="Card image cap" class="card-img-top" src="{{row.imagen}}"

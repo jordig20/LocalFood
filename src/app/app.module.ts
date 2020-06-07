@@ -21,13 +21,15 @@ import { StarRatingModule } from './star-rating/star-rating.module';
 import { HttpClientModule } from '@angular/common/http';
 import {CoreModule} from "./core/core-module.module";
 import {EncrDecrService} from "./core/services/encrdecr.service";
+import { TermsComponent } from './terms/terms.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    TermsComponent
   ],
   imports: [
     BrowserModule,

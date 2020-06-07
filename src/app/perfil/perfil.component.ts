@@ -74,7 +74,7 @@ export class PerfilComponent implements OnInit {
 
     this.data.name = values.name;
     this.data.adress = values.adress;
-    this.data.city = values.city;
+    this.data.city = values.city.toLowerCase();
     this.data.type = values.type;
     this.data.telf = values.telf;
 
