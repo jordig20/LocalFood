@@ -33,6 +33,9 @@ export class CocinerosViewComponent implements OnInit {
     });
     this._api.get('user/getone/' + id).subscribe(d => {
       this.usuario = d[0];
+      if (this.usuario.type == 'user') {
+        this.usuario.type = 'Cliente';
+      }
     });
   }
 
