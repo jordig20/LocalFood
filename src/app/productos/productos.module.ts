@@ -17,6 +17,7 @@ import { ProductosCreateComponent } from './productos-create/productos-create.co
 const routes: Routes = [
   { path: '', component: ProductosComponent },
   { path: ':id', component: ProductosViewComponent },
+  { path: '', component: ProductosCreateComponent },
 
 ];
 
