@@ -20,6 +20,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { StarRatingModule } from './star-rating/star-rating.module';
 import { HttpClientModule } from '@angular/common/http';
 import {CoreModule} from "./core/core-module.module";
+import {EncrDecrService} from "./core/services/encrdecr.service";
 
 @NgModule({
   declarations: [
@@ -47,7 +48,7 @@ import {CoreModule} from "./core/core-module.module";
     HttpClientModule,
     CoreModule,
   ],
-  providers: [],
+  providers: [EncrDecrService],
   bootstrap: [AppComponent],
   exports: [],
 })

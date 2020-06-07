@@ -3,6 +3,10 @@ import {FormBuilder, Validators, FormControl} from "@angular/forms";
 import { ApiService } from "../core/services/api.service";
 import { Router } from "@angular/router";
 import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import {EncrDecrService} from "../core/services/encrdecr.service";
+import {GlobalConstants} from "../common/global-constants";
+import Global = WebAssembly.Global;
+
 
 @Component({
   selector: 'app-signup',
@@ -20,6 +24,7 @@ export class SignupComponent implements OnInit {
               private _api: ApiService,
               private _http: HttpClient,
               private _router: Router,
+              private _encrDecr: EncrDecrService
   ) {
     this.checkoutForm = this._formBuilder.group({
       name: new FormControl('', [
@@ -49,6 +54,8 @@ export class SignupComponent implements OnInit {
       user.type = "user";
     }
     user.type = user.type.toLowerCase();
+    user.password = this._encrDecr.set(GlobalConstants.pwdKey, user.password);
+
       this._api.post('user/add', user).subscribe(r => {
         this.saved = true;
         setTimeout(this.navigateToLogin.bind(this),3000);
