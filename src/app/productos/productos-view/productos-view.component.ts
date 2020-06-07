@@ -17,9 +17,10 @@ export class ProductosViewComponent implements OnInit {
   public form: FormGroup;
 
   public usuario: any = {};
-  public ownerID: String = '5eda86e78a1e1905083b8439';
+  public ownerID: String = '5eda644c443a4b03d48848ee';
   public edit: boolean;
   private oldData: any[] = [];
+  public saved: boolean = false;
 
   constructor(private _route: ActivatedRoute,
               private _router: Router,
@@ -72,7 +73,9 @@ export class ProductosViewComponent implements OnInit {
     this.producto.description = values.description;
     this.producto.ingredients = values.ingredients;
 
-    this._api.put('product/update/' + this.producto._id, this.producto).subscribe(d => console.log('PUT', d));
+    this._api.put('product/update/' + this.producto._id, this.producto).subscribe(d => {
+      this.saved = true;
+    });
 
   }
 
@@ -86,6 +89,4 @@ export class ProductosViewComponent implements OnInit {
       ingredients: [this.producto.ingredients, Validators.required],
     });
   }
-
-
 }
