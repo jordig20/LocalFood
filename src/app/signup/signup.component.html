@@ -1,21 +1,28 @@
 <div class="page-header" filter-color="blue">
   <div class="container">
     <div class="card form-center">
-      <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)">
+      <form (ngSubmit)="onSubmit(checkoutForm.value)" [formGroup]="checkoutForm">
         <h1>Registrarse</h1>
         <div class="form-group">
-          <input [class.is-invalid] = "checkoutForm.get('name').invalid && checkoutForm.get('name').touched" type="text" class="form-control" id="name" formControlName="name" placeholder="Nombre y apellidos" required>
+          <input [class.is-invalid]="checkoutForm.get('name').invalid && checkoutForm.get('name').touched"
+                 class="form-control"
+                 formControlName="name" id="name" placeholder="Nombre y apellidos" required type="text">
         </div>
-        <div *ngIf="checkoutForm.controls['name'].invalid && (checkoutForm.controls['name'].dirty || checkoutForm.controls['name'].touched)" class="alert alert-danger">
+        <div
+          *ngIf="checkoutForm.controls['name'].invalid && (checkoutForm.controls['name'].dirty || checkoutForm.controls['name'].touched)"
+          class="alert alert-danger">
           <div *ngIf="checkoutForm.controls['name'].errors.required">
             Por favor introduce nombre y apellidos
           </div>
         </div>
         <div class="form-group">
-          <input [class.is-invalid] = "checkoutForm.get('mail').invalid && checkoutForm.get('mail').touched"
-                 type="email" class="form-control" id="email" formControlName="mail" placeholder="Dirección de email" required>
+          <input [class.is-invalid]="checkoutForm.get('mail').invalid && checkoutForm.get('mail').touched"
+                 class="form-control" formControlName="mail" id="email" placeholder="Dirección de email" required
+                 type="email">
         </div>
-        <div *ngIf="checkoutForm.controls['mail'].invalid && (checkoutForm.controls['mail'].dirty || checkoutForm.controls['mail'].touched)" class="alert alert-danger">
+        <div
+          *ngIf="checkoutForm.controls['mail'].invalid && (checkoutForm.controls['mail'].dirty || checkoutForm.controls['mail'].touched)"
+          class="alert alert-danger">
           <div *ngIf="checkoutForm.controls['mail'].errors.required">
             Por favor introduce tu dirección de email
           </div>
@@ -24,36 +31,45 @@
           </div>
         </div>
         <div class="form-group">
-          <input [class.is-invalid] = "checkoutForm.get('password').invalid && checkoutForm.get('password').touched" type="password" class="form-control" id="password" formControlName="password" placeholder="Contraseña">
+          <input [class.is-invalid]="checkoutForm.get('password').invalid && checkoutForm.get('password').touched"
+                 class="form-control" formControlName="password" id="password" placeholder="Contraseña" type="password">
         </div>
-        <div *ngIf="checkoutForm.controls['password'].invalid && (checkoutForm.controls['password'].dirty || checkoutForm.controls['password'].touched)" class="alert alert-danger">
+        <div
+          *ngIf="checkoutForm.controls['password'].invalid && (checkoutForm.controls['password'].dirty || checkoutForm.controls['password'].touched)"
+          class="alert alert-danger">
           <div *ngIf="checkoutForm.controls['password'].errors.required">
             Por favor introduce tu contraseña
           </div>
-          <div *ngIf="checkoutForm.controls['password'].errors.minlength && !checkoutForm.controls['password'].errors.required">
+          <div
+            *ngIf="checkoutForm.controls['password'].errors.minlength && !checkoutForm.controls['password'].errors.required">
             Recuerda que tu contraseña debe tener al menos 8 caracteres
           </div>
         </div>
-
         <div class="form-group">
-          <select class="custom-control" formControlName="type" id="type">
-            <option>Cliente</option>
-            <option>HomeChef</option>
-            <option>Restaurant</option>
+          <select class="form-control" formControlName="type" id="type">
+            <option disabled selected value="">Selecciona el tipo de usuario</option>
+            <option value="user">Cliente</option>
+            <option value="homechef">HomeChef</option>
+            <option value="restaurant">Restaurant</option>
           </select>
         </div>
         <div class="form-group">
-          <select class="custom-control" formControlName="city" id="city">
-            <option>Reus</option>
-            <option>Barcelona</option>
-            <option>Madrid</option>
-            <option>Sevilla</option>
+          <select class="form-control" formControlName="city" id="city">
+            <option value="reus">Reus</option>
+            <option disabled selected value="">Selecciona la ciudad</option>
+            <option value="barcelona">Barcelona</option>
+            <option value="madrid">Madrid</option>
+            <option value="sevilla">Sevilla</option>
           </select>
         </div>
 
-        <button type="submit" class="btn btn-primary" [disabled]="checkoutForm.pristine || checkoutForm.invalid">Registrarse</button>
+        <button [disabled]="checkoutForm.pristine || checkoutForm.invalid" class="btn btn-primary" type="submit">
+          Registrarse
+        </button>
       </form>
-      <p>¿Ya tienes cuenta? <a href="/login">Inicia sesión aquí</a></p>
+      <p>¿Ya tienes cuenta?
+        <a href="/login">Inicia sesión aquí</a>
+      </p>
     </div>
     <app-alert *ngIf="saved" [text]="'Registro finalizado con éxito, redirigiendo a Iniciar sesión'"></app-alert>
   </div>

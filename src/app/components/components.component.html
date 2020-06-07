@@ -3,20 +3,26 @@
     <div class="page-header-image rellax-header w-100 h-auto position-fixed img-header-position" data-rellax-speed="-7"
          style="background-image: url('assets/img/header.jpg');">
     </div>
-    <a href="/login" class="btn btn-outline-light m-3 float-right">Iniciar sesión</a>
-        <a href="/terms" class="text-light m-3 float-left">Términos</a>
-      <div class="container">
-        <div class="content-center brand">
-            <h1 class="h1-seo">Local Food</h1>
-            <h3>La comida, como en casa.</h3>
-            <div class="m-5">
-              <form (ngSubmit)="onSubmit()" class="form-inline d-flex justify-content-center md-form form-sm mt-0">
-                <i class="fas fa-search" aria-hidden="true"></i>
-                <input (keyup)="onKey($event)" class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Busca tu ciudad..."
-                       aria-label="Search">
-              </form>
-            </div>
+    <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
+      <a class="btn btn-outline-light m-3 float-right" href="/login">Iniciar sesión</a>
+    </ng-container>
+    <ng-template #loggedIn>
+      <a (click)="authService.logOut();" class="btn btn-outline-light m-3 float-right">Cerrar sesión</a>
+    </ng-template>
+    <a class="text-light m-3 float-left" href="/terms">Términos</a>
+    <div class="container">
+      <div class="content-center brand">
+        <h1 class="h1-seo">Local Food</h1>
+        <h3>La comida, como en casa.</h3>
+        <div class="m-5">
+          <form (ngSubmit)="onSubmit()" class="form-inline d-flex justify-content-center md-form form-sm mt-0">
+            <i aria-hidden="true" class="fas fa-search"></i>
+            <input (keyup)="onKey($event)" aria-label="Search" class="form-control form-control-sm ml-3 w-75"
+                   placeholder="Busca tu ciudad..."
+                   type="text">
+          </form>
         </div>
       </div>
+    </div>
   </div>
 </div>
