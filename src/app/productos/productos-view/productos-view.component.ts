@@ -4,6 +4,7 @@ import { StarRatingColor } from '../../star-rating/star-rating.component';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from 'app/core/services/api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-productos-view',
@@ -12,21 +13,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class ProductosViewComponent implements OnInit {
   starColor: StarRatingColor = StarRatingColor.accent;
+
   public isMine: Boolean;
   public producto: any = {};
   public form: FormGroup;
-
   public usuario: any = {};
-  public ownerID: String = '5eda644c443a4b03d48848ee';
   public edit: boolean;
-  private oldData: any[] = [];
   public saved: boolean = false;
+  private oldData: any[] = [];
 
   constructor(private _route: ActivatedRoute,
               private _router: Router,
               private _api: ApiService,
               private _http: HttpClient,
               private _fb: FormBuilder,
+              private _user: AuthService,
   ) {
   }
 
@@ -36,11 +37,11 @@ export class ProductosViewComponent implements OnInit {
     this.edit = false;
 
     this._api.get('product/getone/' + id).subscribe(a => {
-      //this.producto = this.parseData(a[0]);
       this.producto = a[0];
+      console.log(this.producto.imageUrl);
       this.buildForm();
 
-      if (this.ownerID === this.producto.userId) {
+      if (this._user.getId() === this.producto.userId) {
         this.isMine = true;
       }
 
@@ -72,6 +73,7 @@ export class ProductosViewComponent implements OnInit {
     this.producto.price = values.price;
     this.producto.description = values.description;
     this.producto.ingredients = values.ingredients;
+    this.producto.imageUrl = values.imageUrl;
 
     this._api.put('product/update/' + this.producto._id, this.producto).subscribe(d => {
       this.saved = true;
@@ -79,6 +81,12 @@ export class ProductosViewComponent implements OnInit {
 
   }
 
+  onDelete() {
+    this._api.delete('product/delete/' + this.producto._id).subscribe(d => {
+      this._router.navigate(['productos']);
+
+    });
+  }
 
   private buildForm(): void {
     this.oldData = JSON.parse(JSON.stringify(this.producto));
@@ -87,6 +95,7 @@ export class ProductosViewComponent implements OnInit {
       price: [this.producto.price, Validators.required],
       description: [this.producto.description, Validators.required],
       ingredients: [this.producto.ingredients, Validators.required],
+      imageUrl: [this.producto.imageUrl],
     });
   }
 }

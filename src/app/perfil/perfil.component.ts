@@ -4,6 +4,7 @@ import { StarRatingColor } from '../star-rating/star-rating.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ApiService } from 'app/core/services/api.service';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../core/services/auth.service';
 
 @Component({
   selector: 'app-perfil',
@@ -34,6 +35,7 @@ export class PerfilComponent implements OnInit {
     private _route: ActivatedRoute,
     private _router: Router,
     private _http: HttpClient,
+    private _user: AuthService,
   ) {
   }
 
@@ -74,6 +76,8 @@ export class PerfilComponent implements OnInit {
     this.data.city = values.city.toLowerCase();
     this.data.type = this.type;
     this.data.telf = values.telf;
+    this.data.mail = values.mail;
+    this.data.imageUrl = values.imageUrl;
 
     this._api.put('user/update/' + this.data._id, this.data).subscribe(d => console.log('PUT', d));
     this.updated = true;
@@ -105,6 +109,8 @@ export class PerfilComponent implements OnInit {
       type: [this.data.type, Validators.required],
       adress: [this.data.adress, Validators.required],
       telf: [this.data.telf, Validators.required],
+      mail: [this.data.mail, Validators.required],
+      imageUrl: [this.data.imageUrl],
 
     });
   }

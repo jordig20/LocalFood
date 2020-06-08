@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { StarRatingColor } from 'app/star-rating/star-rating.component';
 import { ApiService } from 'app/core/services/api.service';
 import { SenderService } from '../core/services/sender.service';
-import { UseridService } from '../core/services/userid.service';
+import { AuthService } from '../core/services/auth.service';
 
 @Component({
   selector: 'app-productos',
@@ -33,17 +33,11 @@ export class ProductosComponent implements OnInit {
   constructor(private _router: Router,
               private _api: ApiService,
               private _sender: SenderService,
-              private _userId: UseridService,
+              private _user: AuthService,
   ) {
   }
 
   ngOnInit(): void {
-
-    if (this._userId.userId != null) {
-      console.log(this._userId.userId);
-    } else {
-      console.log('No Hay');
-    }
 
     this.search = this._sender.serviceData;
     if (this.search !== undefined) {
@@ -61,6 +55,10 @@ export class ProductosComponent implements OnInit {
 
   onSelect(id: any): void {
     this._router.navigate(['productos/' + id]);
+  }
+
+  onProfile(): void {
+    this._router.navigate(['perfil/' + this._user.getId()]);
   }
 
   selectOption(event: any) {
@@ -87,7 +85,7 @@ export class ProductosComponent implements OnInit {
   }
 
   onAdd() {
-    this._api.get('user/getone/' + this.ownerID).subscribe(r => {
+    this._api.get('user/getone/' + this._user.getId()).subscribe(r => {
       if (r[0].type !== 'user') {
 
         this._router.navigate(['productos/new']);

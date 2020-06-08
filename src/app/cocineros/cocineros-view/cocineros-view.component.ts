@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StarRatingColor } from '../../star-rating/star-rating.component';
 import { ApiService } from 'app/core/services/api.service';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-cocineros-view',
@@ -23,6 +24,7 @@ export class CocinerosViewComponent implements OnInit {
               private _router: Router,
               private _api: ApiService,
               private _http: HttpClient,
+              private _user: AuthService,
   ) {
   }
 
@@ -53,4 +55,7 @@ export class CocinerosViewComponent implements OnInit {
   }
 
 
+  onProfile(): void {
+    this._router.navigate(['perfil/' + this._user.getId()]);
+  }
 }

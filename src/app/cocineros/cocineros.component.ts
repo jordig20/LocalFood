@@ -4,6 +4,7 @@ import { StarRatingColor } from '../star-rating/star-rating.component';
 import { ApiService } from 'app/core/services/api.service';
 import { HttpClient } from '@angular/common/http';
 import { SenderService } from '../core/services/sender.service';
+import { AuthService } from '../core/services/auth.service';
 
 @Component({
   selector: 'app-cocineros',
@@ -28,6 +29,7 @@ export class CocinerosComponent implements OnInit {
               private _api: ApiService,
               private _http: HttpClient,
               private _sender: SenderService,
+              private _user: AuthService,
   ) {
   }
 
@@ -36,7 +38,7 @@ export class CocinerosComponent implements OnInit {
     this._api.get('user/allusers/' + this.search).subscribe(r => {
       this.cocineros = [];
       r.forEach(user => {
-        if(user.type != 'user') {
+        if (user.type != 'user') {
           this.cocineros.push(user);
         }
       });
@@ -68,11 +70,15 @@ export class CocinerosComponent implements OnInit {
     this._api.get('user/allusers/' + this.search).subscribe(r => {
       this.cocineros = [];
       r.forEach(user => {
-        if(user.type != 'user') {
+        if (user.type != 'user') {
           this.cocineros.push(user);
         }
       });
     });
 
+  }
+
+  onProfile(): void {
+    this._router.navigate(['perfil/' + this._user.getId()]);
   }
 }
