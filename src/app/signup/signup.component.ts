@@ -62,25 +62,15 @@ export class SignupComponent implements OnInit {
     this._api.post('auth/signup', user).subscribe(res => {
         localStorage.setItem('token', res.token);
         this.saved = true;
-        setTimeout(this.navigateTo(user).bind(this), 3000);
+        setTimeout(this.navigateTo(), 3000);
       }, error => {
         console.log(error);
       },
     );
   }
 
-  navigateTo(user): any {
-    switch (user.type) {
-      case 'user':
-        this._router.navigate(['index']);
-        break;
-      case 'homechef':
-        this._router.navigate(['perfil']);
-        break;
-      case 'restaurant':
-        this._router.navigate(['perfil']);
-        break;
-    }
+  navigateTo(): any {
+    this._router.navigate(['login']);
   }
 
 }
