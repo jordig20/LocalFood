@@ -44,7 +44,7 @@ export class ProductosCreateComponent implements OnInit {
     });
 
     this.producto = {
-      name: null, description: null, ingredients: null, price: null, userId: null, finalValuations: null,
+      name: null, description: null, ingredients: null, price: null, userId: null, finalValuations: null, imageUrl: null,
     };
     this.buildForm();
     this.edit = true;
@@ -76,6 +76,7 @@ export class ProductosCreateComponent implements OnInit {
     this.producto.type = this.tipo.toLowerCase();
     this.producto.userId = this._user.getId();
     this.producto.finalValuations = null;
+    //this.producto.imageUrl = values.imageUrl;
     this._api.post('product/add', this.producto).subscribe(() => {
       this.saved = true;
       this.ngOnInit();
@@ -93,6 +94,8 @@ export class ProductosCreateComponent implements OnInit {
       price: [this.producto.price, Validators.required],
       description: [this.producto.description, Validators.required],
       ingredients: [this.producto.ingredients, Validators.required],
+      //imageUrl: [this.producto.imageUrl, Validators.required],
+
     });
   }
 

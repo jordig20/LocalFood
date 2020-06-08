@@ -13,12 +13,11 @@ import { AuthService } from '../../core/services/auth.service';
 })
 export class ProductosViewComponent implements OnInit {
   starColor: StarRatingColor = StarRatingColor.accent;
+
   public isMine: Boolean;
   public producto: any = {};
   public form: FormGroup;
-
   public usuario: any = {};
-  public ownerID: String = '5eda644c443a4b03d48848ee';
   public edit: boolean;
   public saved: boolean = false;
   private oldData: any[] = [];
@@ -39,6 +38,7 @@ export class ProductosViewComponent implements OnInit {
 
     this._api.get('product/getone/' + id).subscribe(a => {
       this.producto = a[0];
+      console.log(this.producto.imageUrl);
       this.buildForm();
 
       if (this._user.getId() === this.producto.userId) {
@@ -73,6 +73,7 @@ export class ProductosViewComponent implements OnInit {
     this.producto.price = values.price;
     this.producto.description = values.description;
     this.producto.ingredients = values.ingredients;
+    this.producto.imageUrl = values.imageUrl;
 
     this._api.put('product/update/' + this.producto._id, this.producto).subscribe(d => {
       this.saved = true;
@@ -80,6 +81,12 @@ export class ProductosViewComponent implements OnInit {
 
   }
 
+  onDelete() {
+    this._api.delete('product/delete/' + this.producto._id).subscribe(d => {
+      this._router.navigate(['productos']);
+
+    });
+  }
 
   private buildForm(): void {
     this.oldData = JSON.parse(JSON.stringify(this.producto));
@@ -88,6 +95,7 @@ export class ProductosViewComponent implements OnInit {
       price: [this.producto.price, Validators.required],
       description: [this.producto.description, Validators.required],
       ingredients: [this.producto.ingredients, Validators.required],
+      imageUrl: [this.producto.imageUrl],
     });
   }
 }

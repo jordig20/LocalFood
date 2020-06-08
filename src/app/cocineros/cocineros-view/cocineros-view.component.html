@@ -38,7 +38,7 @@
           </li>
           <li _ngcontent-c4="" class="nav-item">
             <a (click)="onProfile()" _ngcontent-c4="" class="nav-link"><i _ngcontent-c4=""
-                                                    class="now-ui-icons ui-1_settings-gear-63"></i>
+                                                                          class="now-ui-icons ui-1_settings-gear-63"></i>
               <p _ngcontent-c4="">MI PERFIL</p>
             </a>
           </li>
@@ -52,7 +52,7 @@
     <div [style.backgroundColor]="'white'" class="card">
       <div class="card-header">
         <div style="text-align: center">
-          <img alt="Card image cap" src=""
+          <img alt="Card image cap" src="{{usuario.imageUrl}}"
                style="border-radius:50%; width: 70px; height: 70px; border-style: solid; border-color: #2CA8FF ; border-width: 1px;">
 
           <h3>{{usuario.name}}</h3>
@@ -68,7 +68,7 @@
               </div>
               <div *ngFor="let row of productos, index as i" class="col-sm-4">
                 <div class="card text-center bg-light mb-5 " style="width: 18rem; margin: 0 auto">
-                  <img alt="Card image cap" class="card-img-top" src="{{row.imagen}}"
+                  <img alt="Card image cap" class="card-img-top" src="{{row.imageUrl}}"
                        style="width: 400px; height: 300px; object-fit: cover; ">
                   <div class="card-header">{{row.name}}</div>
                   <div class="card-body">
@@ -90,7 +90,7 @@
           <div class="row" style="margin-left: 30px">
             <div>
               <div class="card-body">
-                <img src=""
+                <img src="{{usuario.imageUrl}}"
                      style="width: 500px; height: 500px; object-fit: cover; -webkit-border-radius: 10px; border-radius: 10px;">
               </div>
             </div>

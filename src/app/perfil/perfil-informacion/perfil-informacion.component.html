@@ -1,7 +1,7 @@
 <div class="row" style="margin-left: 30px">
   <div>
     <div class="card-body">
-      <img src=""
+      <img src="{{data.imageUrl}}"
            style="width: 500px; height: 500px; object-fit: cover; -webkit-border-radius: 10px; border-radius: 10px;">
     </div>
   </div>
@@ -60,6 +60,19 @@
           <app-input [edit]="edit" [form]="form" [key]='"mail"'
                      [label]='"Email"'></app-input>
         </mat-expansion-panel>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              IMÁGEN
+            </mat-panel-title>
+            <mat-panel-description>
+              Url imágen de usuario
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <app-input [edit]="edit" [form]="form" [key]='"imageUrl"'
+                     [label]='"Imágen"'></app-input>
+        </mat-expansion-panel>
+
       </mat-accordion>
 
 
