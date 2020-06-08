@@ -43,20 +43,36 @@ export class LoginComponent implements OnInit {
     user.password = this._encrDecr.set(GlobalConstants.pwdKey, user.password);
     console.log(user);
 
+
     this._api.post('auth/login', user).subscribe(res => {
+
       localStorage.setItem('token', res.token);
       localStorage.setItem('id', res.id);
-      this.loged = true;
-      this._userId.setUserId();
-      setTimeout(this.navigateToIndex.bind(this), 3000);
+
+      this._api.get('user/getone/' + res.id).subscribe(response => {
+        this.loged = true;
+        this._userId.setUserId();
+        setTimeout(this.navigateTo(response[0]).bind(this), 3000);
+      });
+
     }, error => {
       this.errorText = error.error;
       this.error = true;
     });
   }
 
-  navigateToIndex() {
-    this._router.navigate(['index']);
+  navigateTo(user): any {
+    switch (user.type) {
+      case 'user':
+        this._router.navigate(['index']);
+        break;
+      case 'homechef':
+        this._router.navigate(['perfil']);
+        break;
+      case 'restaurant':
+        this._router.navigate(['perfil']);
+        break;
+    }
   }
 
 }

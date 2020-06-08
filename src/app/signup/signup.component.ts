@@ -38,10 +38,10 @@ export class SignupComponent implements OnInit {
         Validators.minLength(8),
       ]),
       city: new FormControl('', [
-        Validators.required
+        Validators.required,
       ]),
       type: new FormControl('', [
-        Validators.required
+        Validators.required,
       ]),
     });
   }
@@ -62,15 +62,25 @@ export class SignupComponent implements OnInit {
     this._api.post('auth/signup', user).subscribe(res => {
         localStorage.setItem('token', res.token);
         this.saved = true;
-        setTimeout(this.navigateToLogin.bind(this), 3000);
+        setTimeout(this.navigateTo(user).bind(this), 3000);
       }, error => {
         console.log(error);
       },
     );
   }
 
-  navigateToLogin() {
-    this._router.navigate(['login']);
+  navigateTo(user): any {
+    switch (user.type) {
+      case 'user':
+        this._router.navigate(['index']);
+        break;
+      case 'homechef':
+        this._router.navigate(['perfil']);
+        break;
+      case 'restaurant':
+        this._router.navigate(['perfil']);
+        break;
+    }
   }
 
 }
