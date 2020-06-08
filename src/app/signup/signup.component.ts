@@ -37,8 +37,12 @@ export class SignupComponent implements OnInit {
         Validators.required,
         Validators.minLength(8),
       ]),
-      city: 'Reus',
-      type: 'Cliente',
+      city: new FormControl('', [
+        Validators.required
+      ]),
+      type: new FormControl('', [
+        Validators.required
+      ]),
     });
   }
 
